@@ -1,22 +1,1 @@
-# -*- coding: utf-8 -*-
-
-# 插件加载方法：
-# 1. install & run qqbot
-#    pip install qqbot
-#    qqbot
-# 2. 将本文件保存至 ~/.qqbot-tmp/plugins 目录 （或 c:\user\xxx\.qqbot-tmp\plugins ）
-# 3. 在命令行窗口输入：
-#    qq plug repeater
-
-last_message = {}
-
-
-def onQQMessage(bot, contact, member, content):
-    name = str(contact)
-    if name in last_message.keys() and last_message[name][0] == content:
-        last_message[name][1] += 1
-        if last_message[name][1] == 2:
-            bot.SendTo(contact, content)
-    else:
-        last_message[name] = [content, 1]
-
+# -*- coding: utf-8 -*-GROUPS_TO_REPEAT = ['2842243415', ]BLACKLIST = ['682881741', ]last_message = {}last_sent = ""def onQQMessage(bot, contact, member, content):    if content == ""\            or contact.ctype != 'group'\            or contact.uin not in GROUPS_TO_REPEAT\            or member.uin in BLACKLIST:        return    global last_sent, last_message    # Repeat    group_name = str(contact)    if group_name in last_message.keys() and last_message[group_name][0] == content:        last_message[group_name][1] += 1        if last_message[group_name][1] == 2:            if content != last_sent:                last_sent = content                bot.SendTo(contact, content)    else:        last_message[group_name] = [content, 1]

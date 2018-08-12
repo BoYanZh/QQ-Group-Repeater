@@ -1,4 +1,4 @@
-# QQGroupRepeater
+# QQGroupRepeater lite
 
 QQbot cross platform version of QQGroupRepeater
 
