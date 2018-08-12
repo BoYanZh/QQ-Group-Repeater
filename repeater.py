@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-GROUPS_TO_REPEAT = ['2842243415', ]
+GROUPS_TO_REPEAT = ['2842243415', '1675087388']
 BLACKLIST = ['682881741', ]
 
 last_message = {}
