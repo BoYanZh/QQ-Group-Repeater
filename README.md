@@ -1,6 +1,35 @@
 # QQGroupRepeater
-请参考https://gitee.com/muxiaofei/cq_python_sdk
 
-复读逻辑实现在func.py里
+QQbot cross platform version of QQGroupRepeater
 
-全装到cn.muxiaofei.cq_python27_sdk这个文件夹里替换掉就行
+*Notice: QQbot is not as stable as cq_python in branch Master.*
+
+## Usage
+
+- Install qqbot
+
+```bash
+pip install qqbot
+```
+
+- Copy repeater.py to ~/.qqbot-tmp/plugins
+
+```bash
+cp repeater.py ~/.qqbot-tmp/plugins
+```
+
+- Run qqbot
+
+```Bash
+qqbot [-q YourQQNumber]
+```
+
+- Open another terminal & Load repeater:
+
+```bash
+qq plug repeater
+```
+
+# Thanks
+
+- [qqbot](https://github.com/pandolia/qqbot)
