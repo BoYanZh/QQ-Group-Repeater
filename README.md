@@ -1,6 +1,6 @@
 # QQGroupRepeater
-è¯·å‚è€ƒhttps://gitee.com/muxiaofei/cq_python_sdk
+Çë²Î¿¼https://gitee.com/muxiaofei/cq_python_sdk
 
-å¤è¯»é€»è¾‘å®ç°åœ¨func.pyé‡Œ
+ÇëÎñ±Ø×¢Òâ±àÂë
 
-å…¨è£…åˆ°cn.muxiaofei.cq_python27_sdkè¿™ä¸ªæ–‡ä»¶å¤¹é‡Œæ›¿æ¢æ‰å°±è¡Œ
+È«×°µ½cn.muxiaofei.cq_python27_sdkÕâ¸öÎÄ¼ş¼ĞÀïÌæ»»µô¾ÍĞĞ
