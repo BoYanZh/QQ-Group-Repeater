@@ -47,7 +47,7 @@ class CQHandler(object):
             if(CQHandler.groupdict.get(fromGroup) == None):
                 CQHandler.groupdict[fromGroup] = QGroupRepeater.QGroupBot(fromGroup)
             re = CQHandler.groupdict[fromGroup].tryRepeat(msg)
-            if(len(re)>=0):
+            if(len(re)>0):
                 CQSDK.SendGroupMsg(fromGroup, re)
         except Exception as e:
             logging.exception(e)        
