@@ -30,6 +30,12 @@ qqbot [-q YourQQNumber]
 qq plug repeater
 ```
 
+- \[optional\] Load tuling:
+
+```bash
+qq plug tuling
+```
+
 # Thanks
 
 - [qqbot](https://github.com/pandolia/qqbot)
