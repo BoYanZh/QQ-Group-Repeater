@@ -19,6 +19,12 @@ class QGroupBot:
         self.res = ""
         self.msg = re.sub(r'\[CQ:image,file=.+\]', '', msg)
         self.getWord()
+        if(len(self.res)>0):
+            if(self.res == self.mylastword):
+                self.res = ""
+            self.mylastword = self.res
+        if(len(self.res)>0):
+            time.sleep(0.5)
         return self.res
     
     def getWord(self):
