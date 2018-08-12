@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding:gbk -*-
 
 import sys
 reload(sys)
@@ -15,6 +15,7 @@ logging.basicConfig(
 )
 
 import CQSDK
+import QGroupRepeater
 import func
 
 class CQHandler(object):
@@ -42,29 +43,14 @@ class CQHandler(object):
 
     def OnEvent_GroupMsg(self, subType, sendTime, fromGroup, fromQQ, fromAnonymous, msg, font):
         logging.info('OnEvent_GroupMsg: subType={0}, sendTime={1}, fromGroup={2}, fromQQ={3}, fromAnonymous={4}, msg={5}, font={6}'.format(subType, sendTime, fromGroup, fromQQ, fromAnonymous, msg, font))
-        if(CQHandler.groupdict.get(fromGroup) == None):
-            CQHandler.groupdict[fromGroup] = func.QGroupBot(fromGroup)
-        re = CQHandler.groupdict[fromGroup].tryRepeat(msg)
-        if(re != ""):
-            CQSDK.SendGroupMsg(fromGroup, re)
-        '''
-        global t
-        if(time.time() - t) >= 3:
-            t = time.time()
-            try:
-                #if(fromGroup == 242659221):
-                re = func.tryRepeat(msg)
-                if(re != ""):
-                    CQSDK.SendGroupMsg(fromGroup, re)
-                    if(random.randint(0,6) == 0):
-                        if(re.find("xm") == 0 or re.find("羡慕".decode("utf-8").encode("gbk")) == 0):
-                            mymsg = "羡慕自己".decode("utf-8").encode("gbk") + re
-                            time.sleep(random.randint(2, 5))
-                            CQSDK.SendGroupMsg(fromGroup, mymsg)
-                        
-            except Exception as e:
-                logging.exception(e)
-        '''
+        try:
+            if(CQHandler.groupdict.get(fromGroup) == None):
+                CQHandler.groupdict[fromGroup] = QGroupRepeater.QGroupBot(fromGroup)
+            re = CQHandler.groupdict[fromGroup].tryRepeat(msg)
+            if(len(re)>=0):
+                CQSDK.SendGroupMsg(fromGroup, re)
+        except Exception as e:
+            logging.exception(e)        
 
     def OnEvent_DiscussMsg(self, subType, sendTime, fromDiscuss, fromQQ, msg, font):
         logging.info('OnEvent_DiscussMsg: subType={0}, sendTime={1}, fromDiscuss={2}, fromQQ={3}, msg={4}, font={5}'.format(subType, sendTime, fromDiscuss, fromQQ, msg, font))
