@@ -24,7 +24,7 @@ class QGroupBot:
                 self.res = ""
             self.mylastword = self.res
         if(len(self.res)>0):
-            time.sleep(0.5)
+            time.sleep(random.randint(1,100)/100 + 0.5)
         return self.res
     
     def getWord(self):
@@ -36,22 +36,22 @@ class QGroupBot:
         self.rndXM()
         return
     
-    #»Ø¸´°¬ÌØ
+    #å›žå¤è‰¾ç‰¹
     def replyAT(self):
         if(len(self.res)==0):
             if(self.msg.find("[CQ:at,qq=1414421072]") >= 0):
-                self.res = "guna£¬±ð·³ÎÒ"
+                self.res = "gunaï¼Œåˆ«çƒ¦æˆ‘"
         return
         
     #xm
     def checkXM(self):
         if(len(self.res)==0):
-            if(self.msg[0:2] == "xm" or self.msg[0:4] == "ÏÛÄ½"):
+            if(self.msg[0:2] == "xm" or self.msg[0:4] == "ç¾¡æ…•"):
                 myrand = random.random()
                 if(myrand <= 0.8):
                     self.res = self.msg
                 elif(myrand >= 0.9):
-                    self.res = "ÅÞ£¬ÀÏ×Ó²»ÏÛÄ½"
+                    self.res = "å‘¸ï¼Œè€å­ä¸ç¾¡æ…•"
         return
     
     #keywords
@@ -63,7 +63,7 @@ class QGroupBot:
                     self.res = self.msg
         return
     
-    #¸ú·ç¸´¶Á
+    #è·Ÿé£Žå¤è¯»
     def followRepeat(self):
         if(len(self.res)==0):
             for words in self.arr:
@@ -75,7 +75,7 @@ class QGroupBot:
             self.recordMsg()
         return
         
-    #¼ÇÂ¼
+    #è®°å½•
     def recordMsg(self):
         self.arr[self.index] = self.msg
         self.index += 1 
@@ -84,7 +84,7 @@ class QGroupBot:
         self.lastmsginvl += 1
         return
         
-    #Ëæ»ú¸´¶Á
+    #éšæœºå¤è¯»
     def rndRepeat(self):
         if(len(self.res)==0):
             if(self.lastmsginvl > 5 and len(self.msg) <= 20):
@@ -94,15 +94,15 @@ class QGroupBot:
                    self.res = self.msg
         return
         
-    #Ëæ»úÏÛÄ½
+    #éšæœºç¾¡æ…•
     def rndXM(self):
         if(len(self.res)==0):
-            if(self.msg[-1] != "?" and self.msg[-1] != "£¿"):
+            if(self.msg[-1] != "?" and self.msg[-1] != "ï¼Ÿ"):
                 if(self.lastmsginvl > 5 and len(self.msg) <= 16):
                     myrand = random.random()
                     if(myrand <= 0.05):
                         self.lastmsginvl = 0
-                        self.res = "ÏÛÄ½" + self.msg
+                        self.res = "ç¾¡æ…•" + self.msg
         return
     
     
