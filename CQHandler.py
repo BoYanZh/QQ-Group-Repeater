@@ -16,7 +16,6 @@ logging.basicConfig(
 
 import CQSDK
 import QGroupRepeater
-import func
 
 class CQHandler(object):
     
@@ -46,7 +45,7 @@ class CQHandler(object):
         try:
             if(CQHandler.groupdict.get(fromGroup) == None):
                 CQHandler.groupdict[fromGroup] = QGroupRepeater.QGroupBot(fromGroup)
-            re = CQHandler.groupdict[fromGroup].tryRepeat(msg)
+            re = CQHandler.groupdict[fromGroup].responseMsg(msg)
             if(len(re)>0):
                 CQSDK.SendGroupMsg(fromGroup, re)
         except Exception as e:
