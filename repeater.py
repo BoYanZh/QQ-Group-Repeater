@@ -28,7 +28,7 @@ def onQQMessage(bot, contact, member, content):
     group_name = str(contact)
     if group_name in last_message.keys() and last_message[group_name][0] == content:
         last_message[group_name][1] += 1
-        if last_message[group_name][1] == 2:
+        if last_message[group_name][1] == 3:
             if content != last_sent:
                 last_sent = content
                 bot.SendTo(contact, content)
