@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-GROUPS_TO_REPEAT = ['2842243415', '1675087388']
+GROUPS_TO_REPEAT = ['上海交大2018本科新生', '复读万岁']
 BLACKLIST = ['682881741', ]
 
 last_message = {}
@@ -11,7 +11,7 @@ stop_countdown = 0
 
 def onQQMessage(bot, contact, member, content):
     if content == ""\
-            or contact.ctype != 'group'\
+            or contact.name != 'group'\
             or contact.uin not in GROUPS_TO_REPEAT\
             or member.uin in BLACKLIST:
         return
