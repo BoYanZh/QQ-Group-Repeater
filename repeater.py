@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 GROUPS_TO_REPEAT = ['密西根学院2018学生群', '复读万岁']
-BLACKLIST = ['682881741', ]
 
 last_message = {}
 last_sent = ""
@@ -11,9 +10,8 @@ stop_countdown = 0
 
 def onQQMessage(bot, contact, member, content):
     if content == ""\
-            or contact.name != 'group'\
-            or contact.uin not in GROUPS_TO_REPEAT\
-            or member.uin in BLACKLIST:
+            or contact.ctype != 'group'\
+            or contact.name not in GROUPS_TO_REPEAT:
         return
 
     # Handle stop command
@@ -26,7 +24,6 @@ def onQQMessage(bot, contact, member, content):
         return
 
     global last_sent, last_message
-
     # Repeat
     group_name = str(contact)
     if group_name in last_message.keys() and last_message[group_name][0] == content:
