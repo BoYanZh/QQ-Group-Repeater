@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-GROUPS_TO_REPEAT = ['上海交大2018本科新生', '复读万岁']
+GROUPS_TO_REPEAT = ['密西根学院2018学生群', '复读万岁']
 BLACKLIST = ['682881741', ]
 
 last_message = {}
