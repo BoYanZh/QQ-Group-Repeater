@@ -131,8 +131,10 @@ class QGroupBot:
             if(self.res in self.selfArr):
                 self.res = ""
             else:
-                self.selfArr[self.selfIndex] = self.res
-                self.selfIndex = 0 if self.selfIndex == 9 else self.selfIndex + 1
+                #暴力强制guna
+                if self.res != "guna，别烦我":
+                    self.selfArr[self.selfIndex] = self.res
+                    self.selfIndex = 0 if self.selfIndex == 9 else self.selfIndex + 1
                 sleepTimeRemain = QGroupBot.SLEEP_TIME + self.beginTimeStamp - time.time()
                 if(sleepTimeRemain > 0):
                     time.sleep(sleepTimeRemain)
