@@ -9,6 +9,7 @@ class QGroupBot:
     NOT_XM_PR = 0.1
     RND_REPEAT_PR = 0.05
     RND_XM_PR = 0.05
+    KW_REPEAT_PR = 1
     MIN_MSG_INVL = 5
     MAX_RND_RE_LEN = 20
     MAX_RND_XM_LEN = 16
@@ -26,7 +27,7 @@ class QGroupBot:
         self.res = ""
         self.msg = ""
     
-    def tryRepeat(self, msg):
+    def responseMsg(self, msg):
         self.res = ""
         self.msg = re.sub(r'\[CQ:image,file=.+\]', '', msg)
         self.getWord()
@@ -57,31 +58,27 @@ class QGroupBot:
                 myrand = random.random()
                 if(myrand <= QGroupBot.XM_PR):
                     self.res = self.msg
-                else:
-                    myrand = random.random()
-                    if(myrand <= QGroupBot.NOT_XM_PR):
-                        self.res = "呸，老子不羡慕"
+                elif(myrand >= 1 - QGroupBot.NOT_XM_PR):
+                    self.res = "呸，老子不羡慕"
         return
     
     #关键词
     def checkKeywords(self):
         if(len(self.res) == 0):
-            if(self.msg[-2:] == "nb" or self.msg[-3:] == "ydl" or self.msg[0:3] == "tql" or self.msg[-3:] == "tql" or self.msg[-3:] == "ddw"):
+            if(self.msg.find("nb") >= 0 or self.msg.find("ydl") >= 0 or self.msg.find("tql") >= 0 or self.msg.find("ddw") >= 0):
                 myrand = random.random()
-                if(myrand <= 1):
+                if(myrand <= QGroupBot.KW_REPEAT_PR):
                     self.res = self.msg
         return
     
     #跟风复读
     def followRepeat(self):
         if(len(self.res) == 0):
-            for words in self.mbrArr:
-                if(words == self.msg):
-                    self.mbrArr = [''] * 10
-                    self.res = self.msg
-                    break
-        if(len(self.res) == 0):
-            self.recordMbrMsg()
+            if(self.msg in self.mbrArr):
+                self.mbrArr = [''] * 10
+                self.res = self.msg
+            else:
+                self.recordMbrMsg()
         return
         
     #记录
@@ -117,11 +114,9 @@ class QGroupBot:
     #避免复读自身
     def checkWord(self):
         if(len(self.res) > 0):
-            for words in self.selfArr:
-                if(words == self.res):
-                    self.res = ""
-                    break
-            if(len(self.res) > 0):
+            if(self.res in self.selfArr):
+                self.res = ""
+            else:
                 self.selfArr[self.selfIndex] = self.res
                 self.selfIndex = 0 if self.selfIndex == 9 else self.selfIndex + 1
                 time.sleep(QGroupBot.SLEEP_TIME)
