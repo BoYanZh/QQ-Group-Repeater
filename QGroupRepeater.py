@@ -24,12 +24,19 @@ class QGroupBot:
         self.lastMsgInvl = 10
         self.lastMsgTime = 0
         self.myLastWord = ""
+        self.beginTimeStamp = 0
         self.res = ""
         self.msg = ""
     
     def responseMsg(self, msg):
+        self.beginTimeStamp = time.time()
         self.res = ""
-        self.msg = re.sub(r'\[CQ:image,file=.+\]', '', msg)
+        #È¥³ıÊ×Î²¿Õ°×
+        self.msg = msg.strip().strip("\n")
+        #È¥³ıCQÂëÍ¼Æ¬
+        self.msg = re.sub(r'\[CQ:image,file=.+\]', '', self.msg)
+        #È¥³ı·ÇCQÂë±íÇé
+        self.msg = re.sub(r'/Ìò|/Ğ¦¿Ş|/doge|/Àá±¼|/ÎŞÄÎ|/ÍĞÈù|/ÂôÃÈ|/Ğ±ÑÛĞ¦|/ÅçÑª|/¾ªÏ²|/É§ÈÅ|/Ğ¡¾À½á|/ÎÒ×îÃÀ|/²è|/µ°|/ºì°ü|/ºÓĞ·|/ÑòÍÕ|/¾Õ»¨|/ÓÄÁé|/´óĞ¦|/²»¿ªĞÄ|/ÀäÄ®|/ßÀ|/ºÃ°ô|/°İÍĞ|/µãÔŞ|/ÎŞÁÄ|/ÍĞÁ³|/³Ô|/ËÍ»¨|/º¦ÅÂ|/»¨³Õ|/Ğ¡Ñù¶ù|/ì­Àá|/ÎÒ²»¿´|/à£à£|/ºıÁ³|/ÅÄÍ·|/³¶Ò»³¶|/ÌòÒ»Ìò|/²äÒ»²ä|/×§Õ¨Ìì|/¶¥ßÉßÉ', '', self.msg)
         self.getWord()
         self.checkWord()            
         return self.res
@@ -39,6 +46,7 @@ class QGroupBot:
         self.replyAT()
         self.checkXM()
         self.checkKeywords()
+        self.checkStink()
         self.followRepeat()
         self.rndRepeat()
         self.rndXM()
@@ -47,14 +55,14 @@ class QGroupBot:
     #»Ø¸´°¬ÌØ
     def replyAT(self):
         if(len(self.res) == 0):
-            if(self.msg.find("[CQ:at,qq=2279711715]") >= 0):
+            if(re.match(r'\[CQ:at,qq=2279711715\]', self.msg)):
                 self.res = "guna£¬±ğ·³ÎÒ"
         return
         
-    #xm
+    #ÏÛÄ½¼ì²â
     def checkXM(self):
         if(len(self.res) == 0):
-            if(self.msg[0:2] == "xm" or self.msg[0:4] == "ÏÛÄ½"):
+            if(re.match(r'xm|ÏÛÄ½', self.msg)):
                 myrand = random.random()
                 if(myrand <= QGroupBot.XM_PR):
                     self.res = self.msg
@@ -62,15 +70,22 @@ class QGroupBot:
                     self.res = "ÅŞ£¬ÀÏ×Ó²»ÏÛÄ½"
         return
     
-    #¹Ø¼ü´Ê
+    #¹Ø¼ü´Ê¼ì²â
     def checkKeywords(self):
         if(len(self.res) == 0):
-            if(self.msg.find("nb") >= 0 or self.msg.find("ydl") >= 0 or self.msg.find("tql") >= 0 or self.msg.find("ddw") >= 0):
+            if(re.search(r'tql|nb|ydl|ddw', self.msg)):
                 myrand = random.random()
                 if(myrand <= QGroupBot.KW_REPEAT_PR):
                     self.res = self.msg
         return
-    
+        
+    #¶ñ ³ô ¼ì ²â
+    def checkStink(self):
+        if(len(self.res) == 0):
+            if(re.search(r'(.\s){3}', self.msg)):
+                self.res = "Äã Ëµ »° ´ø ¿Õ ¸ñ"
+        return
+        
     #¸ú·ç¸´¶Á
     def followRepeat(self):
         if(len(self.res) == 0):
@@ -101,13 +116,12 @@ class QGroupBot:
     #Ëæ»úÏÛÄ½
     def rndXM(self):
         if(len(self.res) == 0):
-            if(self.msg[-1] != "?" and self.msg[-1] != "£¿" and self.msg[0:2] != "xm" and self.msg[0:4] != "ÏÛÄ½" ):
+            if(len(self.msg) > 2 and not re.search(r'^xm|^ÏÛÄ½|?$|£¿$', self.msg)):
                 if(self.lastMsgInvl > QGroupBot.MIN_MSG_INVL and len(self.msg) <= QGroupBot.MAX_RND_XM_LEN):
                     myrand = random.random()
                     if(myrand <= QGroupBot.RND_XM_PR):
                         self.lastMsgInvl = 0
-                        if(self.msg[0:2] == "ÎÒ"):
-                            self.msg = self.msg[3:]
+                        self.msg = re.sub(r'^ÎÒ', '', self.msg)
                         self.res = "ÏÛÄ½" + self.msg
         return
     
@@ -119,7 +133,9 @@ class QGroupBot:
             else:
                 self.selfArr[self.selfIndex] = self.res
                 self.selfIndex = 0 if self.selfIndex == 9 else self.selfIndex + 1
-                time.sleep(QGroupBot.SLEEP_TIME)
+                sleepTimeRemain = QGroupBot.SLEEP_TIME + self.beginTimeStamp - time.time()
+                if(sleepTimeRemain > 0):
+                    time.sleep(sleepTimeRemain)
         return
     
     
