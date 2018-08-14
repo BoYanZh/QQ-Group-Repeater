@@ -26,7 +26,9 @@ def onQQMessage(bot, contact, member, content):
     global last_sent, last_message
     # Repeat
     group_name = str(contact)
-    if group_name in last_message.keys() and last_message[group_name][0] == content:
+    if bot.isMe(contact, member):
+        last_message[group_name] = [content, 4]
+    elif group_name in last_message.keys() and last_message[group_name][0] == content:
         last_message[group_name][1] += 1
         if last_message[group_name][1] == 3:
             if content != last_sent:
