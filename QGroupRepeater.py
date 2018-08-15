@@ -47,7 +47,7 @@ class QGroupBot:
         self.replyAT()
         self.checkXM()
         self.checkKeywords()
-        self.checkStink()
+        self.checkMeme()
         self.followRepeat()
         self.rndRepeat()
         self.rndXM()
@@ -80,11 +80,13 @@ class QGroupBot:
                     self.res = self.msg
         return
 
-    #∂Ò ≥Ù ºÏ ≤‚
-    def checkStink(self):
+    #ÕÊπ£ºÏ≤‚
+    def checkMeme(self):
         if(len(self.res) == 0):
-            if(re.search(r'(\S{1,2}[ ]+){3,}', self.msg + ' ')):
+            if(re.search(r'(\S[ ]+){3,}', re.sub(ur"[\u4e00-\u9fa5]", 'a', self.msg.decode('gbk')) + ' ')):
                 self.res = 'ƒ„ Àµ ª∞ ¥¯ ø’ ∏Ò'
+            elif(re.search(r'(\S+°·){2,}', self.msg)):
+                self.res = random.choice ( ['BOY°·NEXT°·DOOR', 'DEEP°·DARK°·FANTASY', 'ASS°·WE°·CAN', 'Do you like WHAT°·YOU°·SEE', 'SLAVES GET YOUR ASS°· BACK HERE°·', 'FA°·Q'] )
         return
 
     #∏˙∑Á∏¥∂¡
