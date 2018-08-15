@@ -83,7 +83,9 @@ class QGroupBot:
     #玩梗检测
     def checkMeme(self):
         if(len(self.res) == 0):
-            if(re.search(r'(\S[ ]+){3,}', re.sub(ur"[\u4e00-\u9fa5]", 'a', self.msg.decode('gbk')) + ' ')):
+            if self.msg in ['BOY♂NEXT♂DOOR', 'DEEP♂DARK♂FANTASY', 'ASS♂WE♂CAN', 'Do you like WHAT♂YOU♂SEE', 'SLAVES GET YOUR ASS♂ BACK HERE♂', 'FA♂Q', '你 说 话 带 空 格']:
+                return
+            elif(re.search(r'(\S[ ]+){3,}', re.sub(ur"[\u4e00-\u9fa5]", 'a', self.msg.decode('gbk')) + ' ')):
                 self.res = '你 说 话 带 空 格'
             elif(re.search(r'(\S+♂){2,}', self.msg)):
                 self.res = random.choice ( ['BOY♂NEXT♂DOOR', 'DEEP♂DARK♂FANTASY', 'ASS♂WE♂CAN', 'Do you like WHAT♂YOU♂SEE', 'SLAVES GET YOUR ASS♂ BACK HERE♂', 'FA♂Q'] )
@@ -92,7 +94,7 @@ class QGroupBot:
     #跟风复读
     def followRepeat(self):
         if(len(self.res) == 0):
-            if(self.msg in self.mbrArr):
+            if(self.mbrArr.count(self.msg) >= 2):
                 self.mbrArr = [''] * 10
                 self.res = self.msg
             else:
