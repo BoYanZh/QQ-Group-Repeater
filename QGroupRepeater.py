@@ -2,7 +2,6 @@
 import random
 import time
 import re
-import logging
 import json
 import os
 from urllib2 import Request, urlopen
@@ -39,8 +38,6 @@ class QGroupBot:
         self.beginTimeStamp = 0
         self.res = ''
         self.msg = ''
-
-        logging.info(os.getcwd())
 
     def responseMsg(self, msg):
         self.beginTimeStamp = time.time()
@@ -150,7 +147,6 @@ class QGroupBot:
             #         ret = ret + ' ÉæÏÓ' + labels_type[error['label']] + '\n'
             if len(self.res) > 0:
                 self.res = ('¿È¿È\n'+self.res[:-1]).encode('gbk')
-            logging.info(self.res)
         return
 
     #Ëæ»ú¸´¶Á
