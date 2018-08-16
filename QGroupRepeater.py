@@ -4,6 +4,7 @@ import time
 import re
 import json
 import os
+import logging
 from urllib2 import Request, urlopen
 from urllib import urlencode
 
@@ -121,32 +122,41 @@ class QGroupBot:
 
     def verify(self):
         if (len(self.res) == 0):
-            api_url = QGroupBot.SETTINGS['review_api_url']
-            param = {
-                'access_token': QGroupBot.SETTINGS['review_access_token'],
-                'content': self.msg.decode('gbk').encode('utf-8')
-            }
-            param = urlencode(param).encode('utf-8')
-            labels_type = {
-                1: '±©¿ÖÎ¥½û',
-                2: 'ÎÄ±¾É«Çé',
-                3: 'ÕþÖÎÃô¸Ð',
-                4: '¶ñÒâÍÆ¹ã',
-                5: 'µÍË×ÈèÂî',
-                6: 'µÍÖÊ¹àË®',
-            }
-            response = Request(api_url.encode('utf-8'), data=param)
-            response = urlopen(response).read().decode('utf-8').encode('gbk')
-            for error in json.loads(response, encoding='gbk')['result']['reject']:
-                for hit in error['hit']:
-                    self.res = self.res + hit + ' '
-                self.res = self.res + ' ÉæÏÓ' + labels_type[error['label']] + '\n'
-            #     for error in json.loads(response)['result']['review']:
-            #         for hit in error['hit']:
-            #             ret = ret + hit
-            #         ret = ret + ' ÉæÏÓ' + labels_type[error['label']] + '\n'
-            if len(self.res) > 0:
-                self.res = ('¿È¿È\n'+self.res[:-1]).encode('gbk')
+            if self.msg[:4] == '¿È¿È':
+                # ·ÀÖ¹·´¸´ÉóºË
+                return
+            try:
+                api_url = QGroupBot.SETTINGS['review_api_url']
+                param = {
+                    'access_token': QGroupBot.SETTINGS['review_access_token'],
+                    'content': self.msg.decode('gbk').encode('utf-8')
+                }
+                param = urlencode(param).encode('utf-8')
+                labels_type = {
+                    1: '±©¿ÖÎ¥½û',
+                    2: 'ÎÄ±¾É«Çé',
+                    3: 'ÕþÖÎÃô¸Ð',
+                    4: '¶ñÒâÍÆ¹ã',
+                    5: 'µÍË×ÈèÂî',
+                    6: 'µÍÖÊ¹àË®',
+                }
+                response = Request(api_url.encode('utf-8'), data=param)
+                response = urlopen(response).read().decode('utf-8').encode('gbk')
+                for error in json.loads(response, encoding='gbk')['result']['reject']:
+                    for hit in error['hit']:
+                        self.res = self.res + hit + ' '
+                    self.res = self.res + ' ÉæÏÓ' + labels_type[error['label']] + '\n'
+                for error in json.loads(response, encoding='gbk')['result']['review']:
+                    if error['label'] == 5:
+                        # µÍË×ÈèÂî´íÅÐÂÊÌ«¸ß
+                        continue
+                    for hit in error['hit']:
+                        self.res = self.res + hit
+                    self.res = self.res + ' ÉæÏÓ' + labels_type[error['label']] + '\n'
+                if len(self.res) > 0:
+                    self.res = ('¿È¿È\n'+self.res[:-1]).encode('gbk')
+            except KeyError as e:
+                logging.info(e)
         return
 
     #Ëæ»ú¸´¶Á
