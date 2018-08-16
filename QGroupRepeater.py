@@ -14,6 +14,11 @@ class QGroupBot:
     MAX_RND_RE_LEN = 20
     MAX_RND_XM_LEN = 16
     SLEEP_TIME = 0.5
+    FIXED_REPLY_DICT = { \
+        'AT': ['guna，别烦我', '为什么要召唤我？'], \
+        'LewdDream': ['你  说  话  带  空  格', '唐  突  空  格', '要  素  察  觉'], \
+        'Philosophy': ['BOY♂NEXT♂DOOR', 'DEEP♂DARK♂FANTASY', 'ASS♂WE♂CAN', 'Do you like WHAT♂YOU♂SEE', 'SLAVES GET YOUR ASS♂ BACK HERE♂', 'FA♂Q'] \
+    }
 
     def __init__(self, fromGroup):
         self.fromGroup = fromGroup
@@ -31,13 +36,14 @@ class QGroupBot:
     def responseMsg(self, msg):
         self.beginTimeStamp = time.time()
         self.res = ''
-        self.isRepeat = True
         #去除首尾空白
         self.msg = msg.strip().strip('\n')
         #去除CQ码图片
         self.msg = re.sub(r'\[CQ:image,file=.+\]', '', self.msg)
         #去除非CQ码表情
         self.msg = re.sub(r'/舔|/笑哭|/doge|/泪奔|/无奈|/托腮|/卖萌|/斜眼笑|/喷血|/惊喜|/骚扰|/小纠结|/我最美|/茶|/蛋|/红包|/河蟹|/羊驼|/菊花|/幽灵|/大笑|/不开心|/冷漠|/呃|/好棒|/拜托|/点赞|/无聊|/托脸|/吃|/送花|/害怕|/花痴|/小样儿|/飙泪|/我不看|/啵啵|/糊脸|/拍头|/扯一扯|/舔一舔|/蹭一蹭|/拽炸天|/顶呱呱', '', self.msg)
+        if(len(self.msg) == 0):
+            return ''
         self.getWord()
         self.checkWord()
         return self.res
@@ -57,18 +63,18 @@ class QGroupBot:
     def replyAT(self):
         if(len(self.res) == 0):
             if(re.search(r'\[CQ:at,qq=2279711715\]', self.msg)):
-                self.res = 'guna，别烦我'
+                self.res = random.choice(QGroupBot.FIXED_REPLY_DICT['AT'])
         return
 
     #羡慕检测
     def checkXM(self):
         if(len(self.res) == 0):
-            if(re.search(r'^xm|羡慕', self.msg)):
+            if(re.search(r'^xm|^羡慕', self.msg)):
                 myrand = random.random()
                 if(myrand <= QGroupBot.XM_PR):
                     self.res = self.msg
                 elif(myrand >= 1 - QGroupBot.NOT_XM_PR):
-                    self.res = '呸，老子才不羡慕' + re.sub(r'^xm|羡慕', '', self.msg)
+                    self.res = '呸，老子才不羡慕' + re.sub(r'^xm|^羡慕', '', self.msg)
         return
 
     #关键词检测
@@ -83,12 +89,10 @@ class QGroupBot:
     #玩梗检测
     def checkMeme(self):
         if(len(self.res) == 0):
-            if self.msg in ['BOY♂NEXT♂DOOR', 'DEEP♂DARK♂FANTASY', 'ASS♂WE♂CAN', 'Do you like WHAT♂YOU♂SEE', 'SLAVES GET YOUR ASS♂ BACK HERE♂', 'FA♂Q', '你 说 话 带 空 格']:
-                return
-            elif(re.search(r'(\S[ ]+){3,}', re.sub(ur"[\u4e00-\u9fa5]", 'a', self.msg.decode('gbk')) + ' ')):
-                self.res = '你 说 话 带 空 格'
+            if(re.search(r'(\S[ ]+){3,}', re.sub(ur"[\u4e00-\u9fa5]", 'a', self.msg.decode('gbk')) + ' ')):
+                self.res = random.choice(QGroupBot.FIXED_REPLY_DICT['LewdDream'])
             elif(re.search(r'(\S+♂){2,}', self.msg)):
-                self.res = random.choice ( ['BOY♂NEXT♂DOOR', 'DEEP♂DARK♂FANTASY', 'ASS♂WE♂CAN', 'Do you like WHAT♂YOU♂SEE', 'SLAVES GET YOUR ASS♂ BACK HERE♂', 'FA♂Q'] )
+                self.res = random.choice(QGroupBot.FIXED_REPLY_DICT['Philosophy'])
         return
 
     #跟风复读
@@ -130,12 +134,17 @@ class QGroupBot:
                         self.res = '羡慕' + self.msg
         return
 
-    #避免复读自身
+    #避免复读自身/另一个bot
     def checkWord(self):
         if(len(self.res) > 0):
             if(self.res == self.msg and self.res in self.selfArr):
                 self.res = ''
+                return
             else:
+                for wordList in QGroupBot.FIXED_REPLY_DICT.values():
+                    if(self.msg in wordList):
+                        self.res = ''
+                        return
                 self.selfArr[self.selfIndex] = self.res
                 self.selfIndex = 0 if self.selfIndex == 9 else self.selfIndex + 1
                 sleepTimeRemain = QGroupBot.SLEEP_TIME + self.beginTimeStamp - time.time()
