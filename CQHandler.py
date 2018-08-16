@@ -35,19 +35,19 @@ class CQHandler(object):
 
     def OnEvent_PrivateMsg(self, subType, sendTime, fromQQ, msg, font):
         logging.info('OnEvent_PrivateMsg: subType={0}, sendTime={1}, fromQQ={2}, msg={3}, font={4}'.format(subType, sendTime, fromQQ, msg, font))
-        try:
-            CQSDK.SendPrivateMsg(fromQQ, msg)
-        except Exception as e:
-            logging.exception(e)
+        #try:
+        #    CQSDK.SendPrivateMsg(fromQQ, msg)
+        #except Exception as e:
+        #    logging.exception(e)
 
     def OnEvent_GroupMsg(self, subType, sendTime, fromGroup, fromQQ, fromAnonymous, msg, font):
         logging.info('OnEvent_GroupMsg: subType={0}, sendTime={1}, fromGroup={2}, fromQQ={3}, fromAnonymous={4}, msg={5}, font={6}'.format(subType, sendTime, fromGroup, fromQQ, fromAnonymous, msg, font))
         try:
             if(CQHandler.groupdict.get(fromGroup) == None):
                 CQHandler.groupdict[fromGroup] = QGroupRepeater.QGroupBot(fromGroup)
-            re = CQHandler.groupdict[fromGroup].responseMsg(msg)
-            if(len(re)>0):
-                CQSDK.SendGroupMsg(fromGroup, re)
+            res = CQHandler.groupdict[fromGroup].responseMsg(msg)
+            if(len(res)>0):
+                CQSDK.SendGroupMsg(fromGroup, res)
         except Exception as e:
             logging.exception(e)        
 
