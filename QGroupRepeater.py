@@ -11,6 +11,7 @@ from urllib import urlencode
 class QGroupBot:
     JSON_LOCATION = os.path.join(os.path.split(os.path.realpath(__file__))[0], 'settings.json')
     SETTINGS = json.load(open(JSON_LOCATION))
+    QQ_NUM = SETTINGS['QQ']
     XM_PR = SETTINGS['XM_PR']
     NOT_XM_PR = SETTINGS['NOT_XM_PR']
     RND_REPEAT_PR = SETTINGS['RND_REPEAT_PR']
@@ -20,14 +21,22 @@ class QGroupBot:
     MAX_RND_RE_LEN = SETTINGS['MAX_RND_RE_LEN']
     MAX_RND_XM_LEN = SETTINGS['MAX_RND_XM_LEN']
     SLEEP_TIME = SETTINGS['SLEEP_TIME']
-    FIXED_REPLY_DICT = { \
-        'AT': ['guna，别烦我', '为什么要召唤我？'], \
-        'LewdDream': ['你  说  话  带  空  格', '唐  突  空  格', '要  素  察  觉'], \
-        'LewdDream_old': ['你 说 话 带 空 格', '唐 突 空 格', '要 素 察 觉'], \
-        'Philosophy': ['BOY♂NEXT♂DOOR', 'DEEP♂DARK♂FANTASY', 'ASS♂WE♂CAN', 'Do you like WHAT♂YOU♂SEE', 'SLAVES GET YOUR ASS♂ BACK HERE♂', 'FA♂Q'] \
+    FIXED_REPLY_DICT = {
+        'AT': ['guna，别烦我', '为什么要召唤我？'],
+        'LewdDream': ['你  说  话  带  空  格', '唐  突  空  格', '要  素  察  觉'],
+        'LewdDream_old': ['你 说 话 带 空 格', '唐 突 空 格', '要 素 察 觉'],
+        'Philosophy': [
+            'BOY♂NEXT♂DOOR',
+            'DEEP♂DARK♂FANTASY',
+            'ASS♂WE♂CAN',
+            'Do you like WHAT♂YOU♂SEE',
+            'SLAVES GET YOUR ASS♂ BACK HERE♂',
+            'FA♂Q'
+        ]
     }
 
     def __init__(self, fromGroup):
+        self.running = True
         self.fromGroup = fromGroup
         self.mbrArr = [''] * 10
         self.mbrIndex = 0
@@ -57,20 +66,39 @@ class QGroupBot:
 
     #获取回复内容
     def getWord(self):
-        self.replyAT()
-        self.checkXM()
-        self.checkKeywords()
-        self.checkMeme()
-        self.followRepeat()
-        self.verify()
-        self.rndRepeat()
-        self.rndXM()
+        self.switch()
+        if self.running:
+            self.replyAT()
+            self.checkXM()
+            self.checkKeywords()
+            self.checkMeme()
+            self.followRepeat()
+            self.verify()
+            self.rndRepeat()
+            self.rndXM()
         return
 
-    #回复艾特
+    def switch(self):
+        # fake AI
+        if (len(self.res) == 0):
+            if (re.search(r'关|停', self.msg) and re.search(r'复读机', self.msg))\
+                    and not re.search(r'已经|不要', self.msg):
+                if self.running != False:
+                    self.running = False
+                    self.res = '唉'
+
+            elif (re.search(r'开|启动', self.msg) and re.search(r'复读机', self.msg))\
+                    and not re.search(r'已经|不要', self.msg):
+                if self.running != True:
+                    self.running = True
+                    self.res = random.choice(QGroupBot.FIXED_REPLY_DICT['AT'])
+                else:
+                    self.res = '你当我是关着的吗？？？'
+
+                    #回复艾特
     def replyAT(self):
         if(len(self.res) == 0):
-            if(re.search(r'\[CQ:at,qq='+QGroupBot.SETTINGS['QQ']+r'\]', self.msg)):
+            if (re.search(r'\[CQ:at,qq=' + str(QGroupBot.QQ_NUM) + r'\]', self.msg)):
                 self.res = random.choice(QGroupBot.FIXED_REPLY_DICT['AT'])
         return
 
@@ -80,9 +108,12 @@ class QGroupBot:
             if(re.search(r'^xm|^羡慕', self.msg)):
                 myrand = random.random()
                 if(myrand <= QGroupBot.XM_PR):
-                    self.res = self.msg
-                elif(myrand >= 1 - QGroupBot.NOT_XM_PR):
-                    self.res = '呸，老子才不羡慕' + re.sub(r'^xm|^羡慕', '', self.msg)
+                    if '呸，老子才不羡慕' + re.sub(r'^xm|^羡慕', '', self.msg) not in self.selfArr:
+                        self.res = self.msg
+                elif(myrand >= 1 - QGroupBot.NOT_XM_PR):  # 避免循环羡慕
+                    if self.msg not in self.selfArr \
+                            and '呸，老子才不羡慕' + re.sub(r'^xm|^羡慕', '', self.msg) not in self.selfArr:
+                        self.res = '呸，老子才不羡慕' + re.sub(r'^xm|^羡慕', '', self.msg)
         return
 
     #关键词检测
@@ -122,7 +153,7 @@ class QGroupBot:
 
     def verify(self):
         if (len(self.res) == 0):
-            if self.msg[:4] == '咳咳':
+            if self.msg[:4] == '咳咳' and '涉嫌' in self.msg:
                 # 防止反复审核
                 return
             try:
@@ -147,8 +178,8 @@ class QGroupBot:
                         self.res = self.res + hit + ' '
                     self.res = self.res + ' 涉嫌' + labels_type[error['label']] + '\n'
                 for error in json.loads(response, encoding='gbk')['result']['review']:
-                    if error['label'] == 5:
-                        # 低俗辱骂错判率太高
+                    if error['label'] in [4, 5]:
+                        # 错判率太高
                         continue
                     for hit in error['hit']:
                         self.res = self.res + hit
@@ -177,7 +208,7 @@ class QGroupBot:
                     myrand = random.random()
                     if(myrand <= QGroupBot.RND_XM_PR):
                         self.lastMsgInvl = 0
-                        self.msg = re.sub(r'^我', '', self.msg)
+                        self.msg = re.sub(r'^我|^我的', '', self.msg)
                         self.res = '羡慕' + self.msg
         return
 
@@ -194,7 +225,8 @@ class QGroupBot:
                         return
                 self.selfArr[self.selfIndex] = self.res
                 self.selfIndex = 0 if self.selfIndex == 9 else self.selfIndex + 1
-                sleepTimeRemain = QGroupBot.SLEEP_TIME + self.beginTimeStamp - time.time()
+                sleepTimeRemain = (QGroupBot.SLEEP_TIME if QGroupBot.SLEEP_TIME != 0
+                    else min(len(self.res) * 0.25, 10)) + self.beginTimeStamp - time.time()
                 if(sleepTimeRemain > 0):
                     time.sleep(sleepTimeRemain)
         return
