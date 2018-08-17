@@ -4,13 +4,12 @@ import time
 import re
 import json
 import os
-import logging
-from urllib2 import Request, urlopen
-from urllib import urlencode
 
 class QGroupBot:
+
     JSON_LOCATION = os.path.join(os.path.split(os.path.realpath(__file__))[0], 'settings.json')
     SETTINGS = json.load(open(JSON_LOCATION))
+    QQ_NUM = SETTINGS['QQ']
     XM_PR = SETTINGS['XM_PR']
     NOT_XM_PR = SETTINGS['NOT_XM_PR']
     RND_REPEAT_PR = SETTINGS['RND_REPEAT_PR']
@@ -62,7 +61,6 @@ class QGroupBot:
         self.checkKeywords()
         self.checkMeme()
         self.followRepeat()
-        self.verify()
         self.rndRepeat()
         self.rndXM()
         return
@@ -70,7 +68,7 @@ class QGroupBot:
     #»Ø¸´°¬ÌØ
     def replyAT(self):
         if(len(self.res) == 0):
-            if(re.search(r'\[CQ:at,qq='+QGroupBot.SETTINGS['QQ']+r'\]', self.msg)):
+            if(re.search(r'\[CQ:at,qq=' + str(QGroupBot.QQ_NUM) + r'\]', self.msg)):
                 self.res = random.choice(QGroupBot.FIXED_REPLY_DICT['AT'])
         return
 
@@ -120,45 +118,6 @@ class QGroupBot:
         self.lastMsgInvl += 1
         return
 
-    def verify(self):
-        if (len(self.res) == 0):
-            if self.msg[:4] == '¿È¿È':
-                # ·ÀÖ¹·´¸´ÉóºË
-                return
-            try:
-                api_url = QGroupBot.SETTINGS['review_api_url']
-                param = {
-                    'access_token': QGroupBot.SETTINGS['review_access_token'],
-                    'content': self.msg.decode('gbk').encode('utf-8')
-                }
-                param = urlencode(param).encode('utf-8')
-                labels_type = {
-                    1: '±©¿ÖÎ¥½û',
-                    2: 'ÎÄ±¾É«Çé',
-                    3: 'ÕþÖÎÃô¸Ð',
-                    4: '¶ñÒâÍÆ¹ã',
-                    5: 'µÍË×ÈèÂî',
-                    6: 'µÍÖÊ¹àË®',
-                }
-                response = Request(api_url.encode('utf-8'), data=param)
-                response = urlopen(response).read().decode('utf-8').encode('gbk')
-                for error in json.loads(response, encoding='gbk')['result']['reject']:
-                    for hit in error['hit']:
-                        self.res = self.res + hit + ' '
-                    self.res = self.res + ' ÉæÏÓ' + labels_type[error['label']] + '\n'
-                for error in json.loads(response, encoding='gbk')['result']['review']:
-                    if error['label'] == 5:
-                        # µÍË×ÈèÂî´íÅÐÂÊÌ«¸ß
-                        continue
-                    for hit in error['hit']:
-                        self.res = self.res + hit
-                    self.res = self.res + ' ÉæÏÓ' + labels_type[error['label']] + '\n'
-                if len(self.res) > 0:
-                    self.res = ('¿È¿È\n'+self.res[:-1]).encode('gbk')
-            except KeyError as e:
-                logging.info(e)
-        return
-
     #Ëæ»ú¸´¶Á
     def rndRepeat(self):
         if(len(self.res) == 0):
@@ -177,7 +136,7 @@ class QGroupBot:
                     myrand = random.random()
                     if(myrand <= QGroupBot.RND_XM_PR):
                         self.lastMsgInvl = 0
-                        self.msg = re.sub(r'^ÎÒ', '', self.msg)
+                        self.msg = re.sub(r'^ÎÒ|^ÎÒµÄ', '', self.msg)
                         self.res = 'ÏÛÄ½' + self.msg
         return
 
@@ -194,7 +153,7 @@ class QGroupBot:
                         return
                 self.selfArr[self.selfIndex] = self.res
                 self.selfIndex = 0 if self.selfIndex == 9 else self.selfIndex + 1
-                sleepTimeRemain = QGroupBot.SLEEP_TIME + self.beginTimeStamp - time.time()
+                sleepTimeRemain = (QGroupBot.SLEEP_TIME if QGroupBot.SLEEP_TIME != 0 else min(len(self.res) * 0.25, 10))  + self.beginTimeStamp - time.time()
                 if(sleepTimeRemain > 0):
                     time.sleep(sleepTimeRemain)
         return

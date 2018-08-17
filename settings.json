@@ -1,14 +1,12 @@
 {
-  "QQ": "YourQQNumber",
-  "review_api_url": "https://aip.baidubce.com/rest/2.0/antispam/v2/spam",
-  "review_access_token": "YourAccessToken",
+  "QQ": YOUR QQ NUMBER,
   "XM_PR": 0.8,
   "NOT_XM_PR": 0.1,
-  "RND_REPEAT_PR": 0.03,
-  "RND_XM_PR": 0.05,
+  "RND_REPEAT_PR": 0.02,
+  "RND_XM_PR": 0.02,
   "KW_REPEAT_PR": 1,
   "MIN_MSG_INVL": 5,
   "MAX_RND_RE_LEN": 20,
   "MAX_RND_XM_LEN": 16,
-  "SLEEP_TIME": 0.5
+  "SLEEP_TIME": 0
 }
