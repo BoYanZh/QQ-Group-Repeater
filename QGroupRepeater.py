@@ -1,17 +1,25 @@
-# -*- coding:gbk -*-
 import random
+from datetime import datetime, timezone, timedelta
 import time
 import re
+import requests
 import json
 import os
 import logging
-from urllib2 import Request, urlopen
-from urllib import urlencode
+import urllib
+
+
+def load_json(file_name):
+    file_path = os.path.join(
+        os.path.split(os.path.realpath(__file__))[0], file_name)
+    return json.load(open(file_path, 'r', encoding='UTF-8'))
+
 
 class QGroupBot:
-    JSON_LOCATION = os.path.join(os.path.split(os.path.realpath(__file__))[0], 'settings.json')
-    SETTINGS = json.load(open(JSON_LOCATION))
-    QQ_NUM = SETTINGS['QQ']
+    # settings
+    SETTINGS = load_json('settings.json')
+    TRASHES = load_json('trash.json')
+    NEW_TRASHES = load_json('new_trash.json')
     XM_PR = SETTINGS['XM_PR']
     NOT_XM_PR = SETTINGS['NOT_XM_PR']
     RND_REPEAT_PR = SETTINGS['RND_REPEAT_PR']
@@ -21,17 +29,25 @@ class QGroupBot:
     MAX_RND_RE_LEN = SETTINGS['MAX_RND_RE_LEN']
     MAX_RND_XM_LEN = SETTINGS['MAX_RND_XM_LEN']
     SLEEP_TIME = SETTINGS['SLEEP_TIME']
+    CLOSE_PR = SETTINGS['CLOSE_PR']
+    ADMIN = SETTINGS['ADMIN']
     FIXED_REPLY_DICT = {
-        'AT': ['guna£¬±ğ·³ÎÒ', 'ÎªÊ²Ã´ÒªÕÙ»½ÎÒ£¿'],
-        'LewdDream': ['Äã  Ëµ  »°  ´ø  ¿Õ  ¸ñ', 'ÌÆ  Í»  ¿Õ  ¸ñ', 'Òª  ËØ  ²ì  ¾õ'],
-        'LewdDream_old': ['Äã Ëµ »° ´ø ¿Õ ¸ñ', 'ÌÆ Í» ¿Õ ¸ñ', 'Òª ËØ ²ì ¾õ'],
+        'AT': ['gunaï¼Œåˆ«çƒ¦æˆ‘', 'ä¸ºä»€ä¹ˆè¦å¬å”¤æˆ‘ï¼Ÿ'],
+        'LewdDream': ['ä½   è¯´  è¯  å¸¦  ç©º  æ ¼', 'å”  çª  ç©º  æ ¼', 'è¦  ç´   å¯Ÿ  è§‰'],
+        'LewdDream_old': ['ä½  è¯´ è¯ å¸¦ ç©º æ ¼', 'å” çª ç©º æ ¼', 'è¦ ç´  å¯Ÿ è§‰'],
         'Philosophy': [
-            'BOY¡áNEXT¡áDOOR',
-            'DEEP¡áDARK¡áFANTASY',
-            'ASS¡áWE¡áCAN',
-            'Do you like WHAT¡áYOU¡áSEE',
-            'SLAVES GET YOUR ASS¡á BACK HERE¡á',
-            'FA¡áQ'
+            'BOYâ™‚NEXTâ™‚DOOR', 'DEEPâ™‚DARKâ™‚FANTASY', 'ASSâ™‚WEâ™‚CAN',
+            'Do you like WHATâ™‚YOUâ™‚SEE', 'SLAVES GET YOUR ASSâ™‚ BACK HEREâ™‚',
+            'FAâ™‚Q'
+        ]
+    }
+    REG_REPLY_DICT = {
+        r'due|deadline|ddl': ['æœ‰ä½ æ°´ç¾¤çš„æ—¶é—´ï¼Œgttèƒ½å†™2ä»½285ä½œä¸š', 'é‚£ä½ æ€ä¹ˆè¿˜åœ¨æ°´ç¾¤ï¼Ÿ'],
+        r'ç¡ä¸ç€': ['å”‰æƒ³ç¡è§‰'],
+        r'(\S+â™‚){2,}': [
+            'BOYâ™‚NEXTâ™‚DOOR', 'DEEPâ™‚DARKâ™‚FANTASY', 'ASSâ™‚WEâ™‚CAN',
+            'Do you like WHATâ™‚YOUâ™‚SEE', 'SLAVES GET YOUR ASSâ™‚ BACK HEREâ™‚',
+            'FAâ™‚Q'
         ]
     }
 
@@ -48,185 +64,196 @@ class QGroupBot:
         self.beginTimeStamp = 0
         self.res = ''
         self.msg = ''
+        self.context = {}
 
-    def responseMsg(self, msg):
+    def responseMsg(self, context):
+        msg = context['message']
+        self.context = context
         self.beginTimeStamp = time.time()
         self.res = ''
-        #È¥³ıÊ×Î²¿Õ°×
+        # purge msg
         self.msg = msg.strip().strip('\n')
-        #È¥³ıCQÂëÍ¼Æ¬
         self.msg = re.sub(r'\[CQ:image,file=.+\]', '', self.msg)
-        #È¥³ı·ÇCQÂë±íÇé
-        self.msg = re.sub(r'/Ìò|/Ğ¦¿Ş|/doge|/Àá±¼|/ÎŞÄÎ|/ÍĞÈù|/ÂôÃÈ|/Ğ±ÑÛĞ¦|/ÅçÑª|/¾ªÏ²|/É§ÈÅ|/Ğ¡¾À½á|/ÎÒ×îÃÀ|/²è|/µ°|/ºì°ü|/ºÓĞ·|/ÑòÍÕ|/¾Õ»¨|/ÓÄÁé|/´óĞ¦|/²»¿ªĞÄ|/ÀäÄ®|/ßÀ|/ºÃ°ô|/°İÍĞ|/µãÔŞ|/ÎŞÁÄ|/ÍĞÁ³|/³Ô|/ËÍ»¨|/º¦ÅÂ|/»¨³Õ|/Ğ¡Ñù¶ù|/ì­Àá|/ÎÒ²»¿´|/à£à£|/ºıÁ³|/ÅÄÍ·|/³¶Ò»³¶|/ÌòÒ»Ìò|/²äÒ»²ä|/×§Õ¨Ìì|/¶¥ßÉßÉ', '', self.msg)
-        if(len(self.msg) == 0):
+        self.msg = re.sub(
+            r'/èˆ”|/ç¬‘å“­|/doge|/æ³ªå¥”|/æ— å¥ˆ|/æ‰˜è…®|/å–èŒ|/æ–œçœ¼ç¬‘|/å–·è¡€|/æƒŠå–œ|/éªšæ‰°|/å°çº ç»“|/æˆ‘æœ€ç¾|/èŒ¶|/è›‹|/çº¢åŒ…|/æ²³èŸ¹|/ç¾Šé©¼|/èŠèŠ±|/å¹½çµ|/å¤§ç¬‘|/ä¸å¼€å¿ƒ|/å†·æ¼ |/å‘ƒ|/å¥½æ£’|/æ‹œæ‰˜|/ç‚¹èµ|/æ— èŠ|/æ‰˜è„¸|/åƒ|/é€èŠ±|/å®³æ€•|/èŠ±ç—´|/å°æ ·å„¿|/é£™æ³ª|/æˆ‘ä¸çœ‹|/å•µå•µ|/ç³Šè„¸|/æ‹å¤´|/æ‰¯ä¸€æ‰¯|/èˆ”ä¸€èˆ”|/è¹­ä¸€è¹­|/æ‹½ç‚¸å¤©|/é¡¶å‘±å‘±',
+            '', self.msg)
+        if (len(self.msg) == 0):
             return ''
         self.getWord()
         self.checkWord()
         return self.res
 
-    #»ñÈ¡»Ø¸´ÄÚÈİ
+    # get reply content
     def getWord(self):
+        processes = [
+            self.replyAT, self.replyFunction, self.checkXM, self.checkKeywords,
+            self.checkMeme, self.followRepeat, self.rndRepeat, self.rndXM
+        ]
         self.switch()
         if self.running:
-            self.replyAT()
-            self.checkXM()
-            self.checkKeywords()
-            self.checkMeme()
-            self.followRepeat()
-            self.verify()
-            self.rndRepeat()
-            self.rndXM()
+            for process in processes:
+                process()
+                if self.res:
+                    break
         return
 
+    # switch on / off of the bot
     def switch(self):
-        # fake AI
-        if (len(self.res) == 0):
-            if (re.search(r'¹Ø|Í£', self.msg) and re.search(r'¸´¶Á»ú', self.msg))\
-                    and not re.search(r'ÒÑ¾­|²»Òª', self.msg):
-                if self.running != False:
+        if (re.search(r'å…³|åœ|é”¤|ç ¸|é—­å˜´', self.msg) and re.search(r'å¤è¯»æœº', self.msg))\
+                and not re.search(r'å·²ç»|ä¸|å¼€', self.msg):
+            if self.running:
+                t = datetime.now(timezone(timedelta(hours=8)))
+                if self.context['user_id'] % (
+                        t.month * 100 + t.day
+                ) % 100 < QGroupBot.CLOSE_PR * 100 or self.context[
+                        'user_id'] in QGroupBot.ADMIN:
                     self.running = False
-                    self.res = '°¦'
-
-            elif (re.search(r'¿ª|Æô¶¯', self.msg) and re.search(r'¸´¶Á»ú', self.msg))\
-                    and not re.search(r'ÒÑ¾­|²»Òª', self.msg):
-                if self.running != True:
-                    self.running = True
-                    self.res = random.choice(QGroupBot.FIXED_REPLY_DICT['AT'])
+                    self.res = 'å“¦ï¼Œå…³äº†'
                 else:
-                    self.res = 'Äãµ±ÎÒÊÇ¹Ø×ÅµÄÂğ£¿£¿£¿'
-
-                    #»Ø¸´°¬ÌØ
-    def replyAT(self):
-        if(len(self.res) == 0):
-            if (re.search(r'\[CQ:at,qq=' + str(QGroupBot.QQ_NUM) + r'\]', self.msg)):
-                self.res = random.choice(QGroupBot.FIXED_REPLY_DICT['AT'])
-        return
-
-    #ÏÛÄ½¼ì²â
-    def checkXM(self):
-        if(len(self.res) == 0):
-            if(re.search(r'^xm|^ÏÛÄ½', self.msg)):
-                myrand = random.random()
-                if(myrand <= QGroupBot.XM_PR):
-                    if 'ÅŞ£¬ÀÏ×Ó²Å²»ÏÛÄ½' + re.sub(r'^xm|^ÏÛÄ½', '', self.msg) not in self.selfArr:
-                        self.res = self.msg
-                elif(myrand >= 1 - QGroupBot.NOT_XM_PR):  # ±ÜÃâÑ­»·ÏÛÄ½
-                    if self.msg not in self.selfArr \
-                            and 'ÅŞ£¬ÀÏ×Ó²Å²»ÏÛÄ½' + re.sub(r'^xm|^ÏÛÄ½', '', self.msg) not in self.selfArr:
-                        self.res = 'ÅŞ£¬ÀÏ×Ó²Å²»ÏÛÄ½' + re.sub(r'^xm|^ÏÛÄ½', '', self.msg)
-        return
-
-    #¹Ø¼ü´Ê¼ì²â
-    def checkKeywords(self):
-        if(len(self.res) == 0):
-            if(re.search(r'tql|nb|ydl|ddw', self.msg)):
-                myrand = random.random()
-                if(myrand <= QGroupBot.KW_REPEAT_PR):
-                    self.res = self.msg
-        return
-
-    #Íæ¹£¼ì²â
-    def checkMeme(self):
-        if(len(self.res) == 0):
-            if(re.search(r'(\S[ ]+){3,}', re.sub(ur"[\u4e00-\u9fa5]", 'a', self.msg.decode('gbk')) + ' ')):
-                self.res = random.choice(QGroupBot.FIXED_REPLY_DICT['LewdDream'])
-            elif(re.search(r'(\S+¡á){2,}', self.msg)):
-                self.res = random.choice(QGroupBot.FIXED_REPLY_DICT['Philosophy'])
-        return
-
-    #¸ú·ç¸´¶Á
-    def followRepeat(self):
-        if(len(self.res) == 0):
-            if(self.mbrArr.count(self.msg) >= 2):
-                self.mbrArr = [''] * 10
-                self.res = self.msg
+                    self.res = 'æ‚¨ä¹Ÿé…å…³æˆ‘ï¼Ÿ'
+        elif (re.search(r'å¼€|å¯åŠ¨|ä¿®', self.msg) and re.search(r'å¤è¯»æœº', self.msg))\
+                and not re.search(r'å·²ç»|ä¸è¦', self.msg):
+            if not self.running:
+                self.running = True
+                self.res = 'æ´»äº†'
             else:
-                self.recordMbrMsg()
-        return
+                self.res = 'ä½ å½“æˆ‘æ˜¯å…³ç€çš„å—ï¼Ÿï¼Ÿï¼Ÿ'
 
-    #¼ÇÂ¼
+    # special reply for message starting with '#'
+    def replyFunction(self):
+        if re.search(r'^#', self.msg):
+            tmp_reg = re.search(r'æ‰”(.*)', self.msg)
+            if tmp_reg:
+                string = tmp_reg.group(1)
+                if string in ['éª°å­', 'è‰²å­']:
+                    self.res = str(random.randint(1, 6))
+                elif string in ['ç¡¬å¸']:
+                    coin_re = ['æ­£', 'å']
+                    self.res = coin_re[random.randint(0, 1)]
+                elif 'å¤è¯»' in string or 'bot' in string:
+                    self.res = 'ä½ æ‰”ä¸€ä¸ªè¯•è¯•ï¼Ÿ'
+                elif not string:
+                    self.res = 'è¯´æ¸…æ¥šè¦æ‰”å•¥å†æ¥é—®'
+                else:
+                    tmp_re = QGroupBot.TRASHES.get(string)
+                    if tmp_re is not None:
+                        self.res = '{}ï¼š{}\n'.format(string, tmp_re)
+                    tmp_dict = dict()
+                    for key, value in QGroupBot.NEW_TRASHES.items():
+                        if string in key:
+                            tmp_dict[key] = value
+                    for key, value in sorted(tmp_dict.items(),
+                                             key=lambda d: len(d[0])):
+                        self.res += '{}ï¼š{}\n'.format(key, value)
+                    self.res = self.res.strip('\n')
+                    if not self.res:
+                        self.res = 'æ‰”ä¸æ¥ï¼Œæ‰“æ‰°äº†'
+                    return
+            if re.search(r'è‰²å›¾', self.msg):
+                imgUrl = self.getUrl()
+                if imgUrl:
+                    self.res = imgUrl
+                else:
+                    self.res = 'åäº†ï¼Œå›¾æ²¡äº†'
+
+    # reply call
+    def replyAT(self):
+        if (re.search(r'\[CQ:at,qq={}\]'.format(self.context['self_id']),
+                      self.msg)):
+            self.res = random.choice(QGroupBot.FIXED_REPLY_DICT['AT'])
+
+    # check XM
+    def checkXM(self):
+        if (re.search(r'^xm|^ç¾¡æ…•', self.msg)):
+            myrand = random.random()
+            if (myrand <= QGroupBot.XM_PR):
+                if 'å‘¸ï¼Œè€å­æ‰ä¸ç¾¡æ…•' + re.sub(r'^xm|^ç¾¡æ…•', '',
+                                       self.msg) not in self.selfArr:
+                    self.res = self.msg
+            elif (myrand >= 1 - QGroupBot.NOT_XM_PR):  # é¿å…å¾ªç¯ç¾¡æ…•
+                if self.msg not in self.selfArr \
+                        and 'å‘¸ï¼Œè€å­æ‰ä¸ç¾¡æ…•' + re.sub(r'^xm|^ç¾¡æ…•', '', self.msg) not in self.selfArr:
+                    self.res = 'å‘¸ï¼Œè€å­æ‰ä¸ç¾¡æ…•' + re.sub(r'^xm|^ç¾¡æ…•', '', self.msg)
+
+    # check keywords
+    def checkKeywords(self):
+        if (re.search(r'tql|nb|ydl|ddw', self.msg)):
+            myrand = random.random()
+            if (myrand <= QGroupBot.KW_REPEAT_PR):
+                self.res = self.msg
+
+    # check meme & regex replys
+    def checkMeme(self):
+        if (re.search(r'(\S[ ]+){3,}',
+                      re.sub(u"[\u4e00-\u9fa5]", 'a', self.msg) + ' ')):
+            self.res = random.choice(QGroupBot.FIXED_REPLY_DICT['LewdDream'])
+            return
+        for regex, words in QGroupBot.REG_REPLY_DICT.items():
+            if re.search(regex, self.msg):
+                self.res = random.choice(words)
+                return
+
+    # followd repeat
+    def followRepeat(self):
+        if (self.mbrArr.count(self.msg) >= 2):
+            self.mbrArr = [''] * 10
+            self.res = self.msg
+        else:
+            self.recordMbrMsg()
+
+    # record previous messages
     def recordMbrMsg(self):
         self.mbrArr[self.mbrIndex] = self.msg
         self.mbrIndex = 0 if self.mbrIndex == 9 else self.mbrIndex + 1
         self.lastMsgInvl += 1
         return
 
-    def verify(self):
-        if (len(self.res) == 0):
-            if self.msg[:4] == '¿È¿È' and 'ÉæÏÓ' in self.msg:
-                # ·ÀÖ¹·´¸´ÉóºË
-                return
-            try:
-                api_url = QGroupBot.SETTINGS['review_api_url']
-                param = {
-                    'access_token': QGroupBot.SETTINGS['review_access_token'],
-                    'content': self.msg.decode('gbk').encode('utf-8')
-                }
-                param = urlencode(param).encode('utf-8')
-                labels_type = {
-                    1: '±©¿ÖÎ¥½û',
-                    2: 'ÎÄ±¾É«Çé',
-                    3: 'ÕşÖÎÃô¸Ğ',
-                    4: '¶ñÒâÍÆ¹ã',
-                    5: 'µÍË×ÈèÂî',
-                    6: 'µÍÖÊ¹àË®',
-                }
-                response = Request(api_url.encode('utf-8'), data=param)
-                response = urlopen(response).read().decode('utf-8').encode('gbk')
-                for error in json.loads(response, encoding='gbk')['result']['reject']:
-                    for hit in error['hit']:
-                        self.res = self.res + hit + ' '
-                    self.res = self.res + ' ÉæÏÓ' + labels_type[error['label']] + '\n'
-                for error in json.loads(response, encoding='gbk')['result']['review']:
-                    if error['label'] in [4, 5]:
-                        # ´íÅĞÂÊÌ«¸ß
-                        continue
-                    for hit in error['hit']:
-                        self.res = self.res + hit
-                    self.res = self.res + ' ÉæÏÓ' + labels_type[error['label']] + '\n'
-                if len(self.res) > 0:
-                    self.res = ('¿È¿È\n'+self.res[:-1]).encode('gbk')
-            except KeyError as e:
-                logging.info(e)
-        return
-
-    #Ëæ»ú¸´¶Á
+    # random repeat
     def rndRepeat(self):
-        if(len(self.res) == 0):
-            if(self.lastMsgInvl > QGroupBot.MIN_MSG_INVL and len(self.msg) <= QGroupBot.MAX_RND_RE_LEN):
-                myrand = random.random()
-                if(myrand <= QGroupBot.RND_REPEAT_PR):
-                   self.lastMsgInvl = 0
-                   self.res = self.msg
-        return
+        if (self.lastMsgInvl > QGroupBot.MIN_MSG_INVL
+                and len(self.msg) <= QGroupBot.MAX_RND_RE_LEN):
+            myrand = random.random()
+            if (myrand <= QGroupBot.RND_REPEAT_PR):
+                self.lastMsgInvl = 0
+                self.res = self.msg
 
-    #Ëæ»úÏÛÄ½
+    # random XM
     def rndXM(self):
-        if(len(self.res) == 0):
-            if(len(self.msg) > 2 and not re.search(r'^xm|^ÏÛÄ½|\?$|£¿$', self.msg)):
-                if(self.lastMsgInvl > QGroupBot.MIN_MSG_INVL and len(self.msg) <= QGroupBot.MAX_RND_XM_LEN):
-                    myrand = random.random()
-                    if(myrand <= QGroupBot.RND_XM_PR):
-                        self.lastMsgInvl = 0
-                        self.msg = re.sub(r'^ÎÒ|^ÎÒµÄ', '', self.msg)
-                        self.res = 'ÏÛÄ½' + self.msg
-        return
+        if (len(self.msg) > 2 and not re.search(r'^xm|^ç¾¡æ…•|\?$|ï¼Ÿ$', self.msg)):
+            if (self.lastMsgInvl > QGroupBot.MIN_MSG_INVL
+                    and len(self.msg) <= QGroupBot.MAX_RND_XM_LEN):
+                myrand = random.random()
+                if (myrand <= QGroupBot.RND_XM_PR):
+                    self.lastMsgInvl = 0
+                    self.msg = re.sub(r'^æˆ‘çš„|^æˆ‘', '', self.msg)
+                    self.res = 'ç¾¡æ…•' + self.msg
 
-    #±ÜÃâ¸´¶Á×ÔÉí/ÁíÒ»¸öbot
+    # avoid repaeting itself / another bot
     def checkWord(self):
-        if(len(self.res) > 0):
-            if(self.res == self.msg and self.res in self.selfArr):
-                self.res = ''
-                return
-            else:
-                for wordList in QGroupBot.FIXED_REPLY_DICT.values():
-                    if(self.msg in wordList):
-                        self.res = ''
-                        return
-                self.selfArr[self.selfIndex] = self.res
-                self.selfIndex = 0 if self.selfIndex == 9 else self.selfIndex + 1
-                sleepTimeRemain = (QGroupBot.SLEEP_TIME if QGroupBot.SLEEP_TIME != 0
-                    else min(len(self.res) * 0.25, 10)) + self.beginTimeStamp - time.time()
-                if(sleepTimeRemain > 0):
-                    time.sleep(sleepTimeRemain)
-        return
+        if (self.res == self.msg and self.res in self.selfArr):
+            self.res = ''
+            return
+        else:
+            for wordList in QGroupBot.FIXED_REPLY_DICT.values():
+                if (self.msg in wordList):
+                    self.res = ''
+                    return
+            self.selfArr[self.selfIndex] = self.res
+            self.selfIndex = 0 if self.selfIndex == 9 else self.selfIndex + 1
+            # TODO: rational delay time
+            # sleepTimeRemain = (
+            #     QGroupBot.SLEEP_TIME if QGroupBot.SLEEP_TIME != 0 else min(
+            #         len(self.res) *
+            #         0.25, 10)) + self.beginTimeStamp - time.time()
+            # if (sleepTimeRemain > 0):
+            #     time.sleep(sleepTimeRemain)
+
+    # ???
+    def getUrl(self):
+        url = "https://yande.re/post.json?limit=1&tags=uncensored&page={}".format(
+            random.randint(1, 1000))
+        try:
+            json = requests.get(url).json()
+            return json[0]['file_url']
+        except:
+            pass

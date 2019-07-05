@@ -1,6 +1,37 @@
 # QQGroupRepeater
-请参考https://gitee.com/muxiaofei/cq_python_sdk
 
-请务必注意编码
+A chat bot for QQ group based on CoolQ and python-aiocqhttp.
 
-全装到cn.muxiaofei.cq_python27_sdk这个文件夹里替换掉就行
+## Usage
+
+Install [CoolQ](https://cqp.cc/) and [python-aiocqhttp](https://github.com/richardchien/python-aiocqhttp). Run CoolQ HTTP API.
+
+The configure file for CoolQ HTTP API may look as follows:
+
+```json
+{
+    "host": "127.0.0.1",
+    "port": 5700,
+    "use_http": true,
+    "post_url": "http://127.0.0.1:8090"
+}
+```
+
+Then run commands in terminal:
+
+```bash
+cp settings.json.example settings.json
+vim settings.json #configure
+python3 coolq.py
+```
+
+Enjoy it!
+
+## Credit
+
+- [CoolQ](https://cqp.cc/)
+- [python-aiocqhttp](https://github.com/richardchien/python-aiocqhttp)
+
+## Contributing
+
+If you have any ideas or find some bugs, please raise a [issue](https://github.com/BoYanZh/QQGroupRepeater/issues).
