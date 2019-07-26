@@ -43,6 +43,7 @@ class QGroupBot:
     }
     REG_REPLY_DICT = {
         r'due|deadline|ddl': ['有你水群的时间，gtt能写2份285作业', '那你怎么还在水群？'],
+        r'入学考': ['密院没有入学考哦~（不用考英语）'],
         r'托福': ['''托福要求：
         听力（Listening）：23 
         阅读（Reading）：23 
