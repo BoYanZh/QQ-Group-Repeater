@@ -43,7 +43,11 @@ class QGroupBot:
     }
     REG_REPLY_DICT = {
         r'due|deadline|ddl': ['有你水群的时间，gtt能写2份285作业', '那你怎么还在水群？'],
-        r'托福': ['托福要求：听力（Listening）：23 阅读（Reading）：23 口语（Speaking）：21 写作（Writing）：21'],
+        r'托福': ['''托福要求：
+        听力（Listening）：23 
+        阅读（Reading）：23 
+        口语（Speaking）：21 
+        写作（Writing）：21'''],
         r'睡不着': ['唉想睡觉'],
         r'(\S+♂){2,}': [
             'BOY♂NEXT♂DOOR', 'DEEP♂DARK♂FANTASY', 'ASS♂WE♂CAN',
