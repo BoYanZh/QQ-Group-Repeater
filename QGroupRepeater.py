@@ -23,10 +23,48 @@ class Bot:
     REPLY = load_json('reply.json')
     TRASHES = load_json('trash.json')
     NEW_TRASHES = load_json('new_trash.json')
+    STUDIED_REPLY = load_json("study.json")
     COURSES = load_json("course.json")
     FIXED_REPLY_DICT = REPLY['FIXED_REPLY_DICT']
     REG_REPLY_DICT = REPLY['REG_REPLY_DICT']
 
+    def __init__(self, fromGroup):
+        self.running = True
+        self.fromGroup = fromGroup
+        self.mbrArr = [''] * 10
+        self.mbrIndex = 0
+        self.selfArr = [''] * 10
+        self.selfIndex = 0
+        self.lastMsgInvl = 10
+        self.lastMsgTime = 0
+        self.myLastWord = ''
+        self.beginTimeStamp = 0
+        self.res = ''
+        self.msg = ''
+        self.context = {}
+        if FULL_MODE:
+            self.bh = BookingHelper.BookingHelper()
+            self.ih = InfoHelper.InfoHelper()
+
+    def responseMsg(self, context):
+        msg = context['message']
+        self.context = context
+        self.beginTimeStamp = time.time()
+        self.res = ''
+        # purge msg
+        self.msg = msg.strip().strip('\n')
+        self.msg = self.msg.replace('\r', '')
+        self.msg = re.sub(r'\[CQ:image,file=.+\]', '', self.msg)
+        self.msg = re.sub(
+            r'/舔|/笑哭|/doge|/泪奔|/无奈|/托腮|/卖萌|/斜眼笑|/喷血|/惊喜|/骚扰|/小纠结|/我最美|/茶|/蛋|/红包|/河蟹|/羊驼|/菊花|/幽灵|/大笑|/不开心|/冷漠|/呃|/好棒|/拜托|/点赞|/无聊|/托脸|/吃|/送花|/害怕|/花痴|/小样儿|/飙泪|/我不看|/啵啵|/糊脸|/拍头|/扯一扯|/舔一舔|/蹭一蹭|/拽炸天|/顶呱呱',
+            '', self.msg)
+        if (len(self.msg) == 0):
+            return ''
+        self.getWord()
+        self.checkWord()
+        return self.res
+
+    # get reply content
     def getWord(self):
         self.switch()
         if self.running:
