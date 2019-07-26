@@ -1,0 +1,41 @@
+{
+    "on_group_increase": ["来人了", "又来一个", "群地位-1", "进人了", "--群地位;"],
+    "on_new_day": ["唉又过了一天"],
+    "on_early": ["早"],
+    "switch_on_successful": ["活了", "开了"],
+    "switch_on_already": ["我寻思我也没关着啊", "你以为我关着么？"],
+    "switch_on_failed": ["你好，我不想开了", "不开"],
+    "switch_off_successful": ["哦，关了", "告辞", "我死了"],
+    "switch_off_failed": ["您也配关我？", "醒醒，你关不了我"],
+    "throw_bot": ["你扔一个试试？", "¿", ""],
+    "throw_nothing": ["¿你要扔啥"],
+    "throw_failed": ["扔不来，打扰了"],
+    "get_image_failed": ["坏了，图没了"],
+    "book_failed": ["订不到，打扰了"],
+    "info_failed": ["我也想知道这是谁"],
+    "question_too_short": ["问句太短"],
+    "answer_too_long": ["答句太长"],
+    "study_successful": ["学会了", "学到了", "mbl"],
+    "study_failed": ["学过了"],
+    "course_failed": ["查不着", "没上过"],
+    "FIXED_REPLY_DICT": {
+        "AT": ["guna，别烦我", "为什么要召唤我？"]
+    },
+    "REG_REPLY_DICT": {
+        "due|deadline|ddl": ["有你水群的时间，gtt能写2份285作业", "那你怎么还在水群？"],
+        "睡不着": ["唉想睡觉"],
+        "(\\S+♂){2,}": [
+            "BOY♂NEXT♂DOOR", "DEEP♂DARK♂FANTASY", "ASS♂WE♂CAN",
+            "Do you like WHAT♂YOU♂SEE", "SLAVES GET YOUR ASS♂ BACK HERE♂",
+            "FA♂Q"
+        ],
+        "([\\u4e00-\\u9fa5] ){3,}": [
+            "你  说  话  带  空  格",
+            "你  打  空  格  带  字",
+            "唐  突  空  格",
+            "要  素  察  觉",
+            "激  寒  空  格"
+        ],
+        "#托福": ["托福要求：\n听力（Listening）：23\n阅读（Reading）：23\n口语（Speaking）：21\n写作（Writing）：21"]
+    }
+}

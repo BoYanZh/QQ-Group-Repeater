@@ -2,3 +2,8 @@ settings.json
 .vscode/
 __pycache__/
 *.pyc
+BookingHelper.py
+ElecHelper.py
+InfoHelper.py
+*.log
+test.*

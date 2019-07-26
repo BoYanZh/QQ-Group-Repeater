@@ -2,10 +2,10 @@ from aiocqhttp import CQHttp, ApiError
 import os
 import random
 import QGroupRepeater
-from QGroupRepeater import load_json
 import logging
 import asyncio
 import time
+from util import load_json
 from datetime import datetime, timezone, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -17,14 +17,14 @@ logging.basicConfig(
     '%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S',
     filename=os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                          'CQHanlder.log'),
+                          'QQGroupRepeater.log'),
     filemode='w+')
 
 bot = CQHttp(api_root='http://127.0.0.1:5700/')
 
 GroupDict = dict()
 SETTINGS = load_json("settings.json")
-REPLY_DICT = {}
+REPLY = load_json('reply.json')
 
 
 @bot.on_message('private')
@@ -43,7 +43,7 @@ async def handle_msg(context):
     global GroupDict
     try:
         if (GroupDict.get(groupId) == None):
-            GroupDict[groupId] = QGroupRepeater.QGroupBot(groupId)
+            GroupDict[groupId] = QGroupRepeater.Bot(groupId)
         re = GroupDict[groupId].responseMsg(context)
         print(context['message'], re)
         return await bot.send(context, message=re) if (len(re) > 0) else 0
@@ -55,8 +55,8 @@ async def handle_msg(context):
 async def handle_group_increase(context):
     if context['group_id'] not in SETTINGS['ALLOW_GROUP']:
         return
-    tmp = ['来人了', '又来一个', '群地位-1', '进人了', '--群地位;']
-    await bot.send(context, message=random.choice(tmp), auto_escape=True)
+    re = random.choice(REPLY['on_group_increase'])
+    await bot.send(context, message=re, auto_escape=True)
 
 
 @bot.on_request('group', 'friend')
@@ -69,13 +69,15 @@ async def send_early_msg():
     time_format = "%Y-%m-%d %H:%M:%S"
     bj_offset = timezone(timedelta(hours=8))
     bj_datetime = datetime.now(bj_offset)
+    re = random.choice(REPLY['on_early'])
     for group_id in SETTINGS['MEMTION_GROUP']:
-        await bot.send({'group_id': group_id}, message="早")
+        await bot.send({'group_id': group_id}, message=re)
 
 
 async def send_new_day_msg():
     for group_id in SETTINGS['MEMTION_GROUP']:
-        await bot.send({'group_id': group_id}, message="唉又过了一天")
+        re = random.choice(REPLY['on_new_day'])
+        await bot.send({'group_id': group_id}, message=re)
 
 
 def sche():
