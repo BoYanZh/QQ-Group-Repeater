@@ -37,9 +37,9 @@ async def handle_private(context):
 
 @bot.on_message('group')
 async def handle_msg(context):
-    if context['group_id'] not in SETTINGS['ALLOW_GROUP']:
-        return
     groupId = context['group_id']
+    if groupId not in SETTINGS['ALLOW_GROUP']:
+        return
     global GroupDict
     try:
         if (GroupDict.get(groupId) == None):

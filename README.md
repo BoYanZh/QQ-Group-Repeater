@@ -20,6 +20,7 @@ The configure file for CoolQ HTTP API may look as follows:
 Then run commands in terminal:
 
 ```bash
+pip install -r requirements.txt
 cp settings.json.example settings.json
 vim settings.json #configure
 python3 coolq.py

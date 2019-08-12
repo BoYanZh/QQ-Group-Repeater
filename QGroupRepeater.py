@@ -303,7 +303,7 @@ class Bot:
             self.context['user_id'] not in Bot.SETTINGS['ADMIN'] or \
             not FULL_MODE:
             return
-        if re.search(r'色图', self.msg):
+        if re.search(r'#色图', self.msg):
             if self.context['user_id'] not in Bot.SETTINGS['ADMIN']:
                 return
             imgUrl = self.getMySetu() if re.search(
@@ -313,7 +313,7 @@ class Bot:
             else:
                 self.res = self.getReply('get_image_failed')
             return
-        tmp_reg = re.search(r'谁是(.+)|(.+)是谁', self.msg)
+        tmp_reg = re.search(r'#谁是(.+)|#(.+)是谁', self.msg)
         if tmp_reg:
             string = tmp_reg.group(1) if tmp_reg.group(1) else tmp_reg.group(2)
             res = self.ih.getInfo(py=string)
@@ -321,7 +321,7 @@ class Bot:
                 self.res = " ".join(res)
             else:
                 self.res = self.getReply('info_failed')
-        if re.search(r'开房', self.msg):
+        if re.search(r'#开房', self.msg):
             res = self.bh.getSchedule()
             if res:
                 self.res = res
