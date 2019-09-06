@@ -11,8 +11,8 @@ from util import load_json
 
 FULL_MODE = True
 try:
-    import BookingHelper
-    import InfoHelper
+    from module.BookingHelper import BookingHelper
+    from module.InfoHelper import InfoHelper
 except:
     FULL_MODE = False
 
@@ -20,11 +20,11 @@ except:
 class Bot:
     # settings
     SETTINGS = load_json('settings.json')
-    REPLY = load_json('reply.json')
-    TRASHES = load_json('trash.json')
-    NEW_TRASHES = load_json('new_trash.json')
-    STUDIED_REPLY = load_json("study.json")
-    COURSES = load_json("course.json")
+    REPLY = load_json('data/reply.json')
+    TRASHES = load_json('data/trash.json')
+    NEW_TRASHES = load_json('data/new_trash.json')
+    STUDIED_REPLY = load_json("data/study.json")
+    COURSES = load_json("data/course.json")
     FIXED_REPLY_DICT = REPLY['FIXED_REPLY_DICT']
     REG_REPLY_DICT = REPLY['REG_REPLY_DICT']
 
@@ -42,9 +42,12 @@ class Bot:
         self.res = ''
         self.msg = ''
         self.context = {}
+        self.msgID = 0
+        self.lastSetuMsgID = 0
+        self.lastSetuMsg = ''
         if FULL_MODE:
-            self.bh = BookingHelper.BookingHelper()
-            self.ih = InfoHelper.InfoHelper()
+            self.bh = BookingHelper()
+            self.ih = InfoHelper()
 
     def responseMsg(self, context):
         msg = context['message']
@@ -52,7 +55,6 @@ class Bot:
         self.beginTimeStamp = time.time()
         self.res = ''
         # purge msg
-        self.msg = msg.strip().strip('\n')
         self.msg = self.msg.replace('\r', '')
         self.msg = re.sub(r'\[CQ:image,file=.+\]', '', self.msg)
         self.msg = re.sub(
@@ -61,10 +63,13 @@ class Bot:
             r'/无聊|/托脸|/吃|/送花|/害怕|/花痴|/小样儿|/飙泪|/我不看|/啵啵|/糊脸|/拍头|/扯一扯|' + \
             r'/舔一舔|/蹭一蹭|/拽炸天|/顶呱呱',
             '', self.msg)
-        if (len(self.msg) == 0):
+        self.msg = msg.strip().strip('\n')
+        if not self.msg:
             return ''
         self.getWord()
         self.checkWord()
+        if self.res:
+            self.msgID += 1
         return self.res
 
     # get reply content
@@ -72,9 +77,10 @@ class Bot:
         self.switch()
         if self.running:
             processes = [
-                self.replyAT, self.replyFunction, self.checkMeme, self.study,
-                self.replyStudy, self.checkXM, self.checkKeywords,
-                self.followRepeat, self.rndRepeat, self.rndXM
+                self.replyAT, self.replyFunction, self.getFullModeReply,
+                self.checkMeme, self.study, self.replyStudy, self.checkXM,
+                self.checkKeywords, self.followRepeat, self.rndRepeat,
+                self.rndXM
             ]
             for process in processes:
                 process()
@@ -118,17 +124,16 @@ class Bot:
     def replyFunction(self):
         if not re.search(r'^#', self.msg):
             return
-        tmp_reg = re.search(r'^#扔(.*)', self.msg)
+        tmp_reg = re.search(r'扔(.*)', self.msg)
         if tmp_reg:
             res = self.getThrow(tmp_reg.group(1))
             self.res = res if res else self.getReply('throw_failed')
             return
-        tmp_reg = re.search(r'^#(\d{3})是什么', self.msg)
+        tmp_reg = re.search(r'(([A-Za-z]{2}|)\d{3})是什么', self.msg)
         if tmp_reg:
             res = self.getCourseInfo(tmp_reg.group(1))
             self.res = res if res else self.getReply("course_failed")
             return
-        self.getFullModeReply()
 
     def getThrow(self, keyword):
         res = ''
@@ -154,7 +159,7 @@ class Bot:
             for key, value in sorted(tmp_dict.items(),
                                      key=lambda d: len(d[0])):
                 res = f'{res}{key}：{value}\n'
-            return res.strip('\n')
+        return res.strip('\n')
 
     def getCourseInfo(self, keyword):
         re = dict()
@@ -266,7 +271,7 @@ class Bot:
             #     time.sleep(sleepTimeRemain)
 
     def study(self):
-        reg = re.search("问：(.+)\s+答：(.+)", self.msg)
+        reg = re.search("问：([\s\S]+)\s+答：([\s\S]+)", self.msg)
         if reg and len(reg.groups()) == 2:
             ask = reg.groups()[0]
             ans = reg.groups()[1]
@@ -276,7 +281,6 @@ class Bot:
             if len(ans) >= 500:
                 self.res = self.getReply("answer_too_long")
                 return
-            print(ask, ans)
             if Bot.STUDIED_REPLY.get(ask) is None:
                 Bot.STUDIED_REPLY[ask] = {"answers": list(), "adders": list()}
             if ans not in Bot.STUDIED_REPLY[ask]["answers"]:
@@ -303,17 +307,22 @@ class Bot:
             self.context['user_id'] not in Bot.SETTINGS['ADMIN'] or \
             not FULL_MODE:
             return
-        if re.search(r'#色图', self.msg):
+        if not re.search(r'^#|不够色', self.msg):
+            return
+        if re.search(r'色图',
+                     self.msg) or (re.search(r'不够色', self.msg)
+                                   and self.msgID - self.lastSetuMsgID < 10):
             if self.context['user_id'] not in Bot.SETTINGS['ADMIN']:
                 return
-            imgUrl = self.getMySetu() if re.search(
-                r'我的', self.msg) else self.getSetu()
+            if re.search(r'不够色', self.msg):
+                self.msg = self.lastSetuMsg
+            imgUrl = self.getSetu()
             if imgUrl:
                 self.res = imgUrl
             else:
                 self.res = self.getReply('get_image_failed')
             return
-        tmp_reg = re.search(r'#谁是(.+)|#(.+)是谁', self.msg)
+        tmp_reg = re.search(r'谁是(.+)|(.+)是谁', self.msg)
         if tmp_reg:
             string = tmp_reg.group(1) if tmp_reg.group(1) else tmp_reg.group(2)
             res = self.ih.getInfo(py=string)
@@ -321,13 +330,15 @@ class Bot:
                 self.res = " ".join(res)
             else:
                 self.res = self.getReply('info_failed')
-        if re.search(r'#开房', self.msg):
+            return
+        if re.search(r'开房', self.msg):
             res = self.bh.getSchedule()
             if res:
                 self.res = res
             else:
                 self.res = self.getReply('book_failed')
-        tmp_reg = re.search(r'#查(.+)', self.msg)
+            return
+        tmp_reg = re.search(r'查(.+)', self.msg)
         if tmp_reg:
             string = tmp_reg.group(1)
             res = self.ih.getInfo(name=string)
@@ -335,26 +346,30 @@ class Bot:
                 self.res = json.dumps(res, ensure_ascii=False)
             else:
                 self.res = self.getReply('info_failed')
+            return
 
     def getSetu(self):
-        url = "https://yande.re/post.json?limit=1&" + \
-            f"tags=uncensored&page={random.randint(1, 1000)}"
-        try:
+        res = ""
+        if "我的" in self.msg:
+            url = "http://boyanzh.xyz:5000/"
+            res = requests.request("GET", url).text
+        elif re.search(r'他的|她的|它的', self.msg):
+            tag = random.choice(
+                ['breasts', 'stockings', 'thighhighs', 'cleavage'])
+            url = "https://konachan.net/post.json?" + \
+                f"tags=stockings&page={random.randint(1, 100)}"
             json = requests.get(url).json()
-            return json[0]['file_url']
-            # querystring = {
-            #     "url": json[0]['file_url'],
-            #     "key":
-            #     "5d22c090b1a9c70e343cfcbf@10b067e933e010e73a0de35e6b59307f"
-            # }
-            # url = "http://suo.im/api.php"
-            # return requests.request("GET", url, params=querystring).text
-        except:
-            pass
-
-    def getMySetu(self):
-        url = "http://59.78.35.49:5000/"
-        return requests.request("GET", url).text
+            urls = [item['file_url'] for item in json if item['rating'] == 's']
+            res = random.choice(urls)
+        else:
+            url = "https://yande.re/post.json?limit=1&" + \
+                f"tags=uncensored&page={random.randint(1, 1000)}"
+            json = requests.get(url).json()
+            res = json[0]['file_url']
+        if res:
+            self.lastSetuMsgID = self.msgID + 1
+            self.lastSetuMsg = self.msg
+        return res
 
 
 if __name__ == "__main__":

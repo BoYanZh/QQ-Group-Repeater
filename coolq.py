@@ -1,15 +1,15 @@
-from aiocqhttp import CQHttp, ApiError
+from aiocqhttp import CQHttp, ApiError, jsonify
 import os
 import random
 import QGroupRepeater
 import logging
 import asyncio
 import time
-from util import load_json
+from util import load_json, purgeMsg
 from datetime import datetime, timezone, timedelta
-from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
+from queue import Queue
 
 logging.basicConfig(
     level=logging.INFO,
@@ -17,14 +17,24 @@ logging.basicConfig(
     '%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S',
     filename=os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                          'QQGroupRepeater.log'),
+                          'QGroupRepeater.log'),
     filemode='w+')
 
 bot = CQHttp(api_root='http://127.0.0.1:5700/')
+app = bot.server_app
 
 GroupDict = dict()
 SETTINGS = load_json("settings.json")
 REPLY = load_json('reply.json')
+msgQueue = Queue()
+
+
+@app.route('/danmu')
+async def danmu():
+    re = []
+    while not msgQueue.empty():
+        re.append(msgQueue.get())
+    return jsonify(re)
 
 
 @bot.on_message('private')
@@ -40,6 +50,8 @@ async def handle_msg(context):
     groupId = context['group_id']
     if groupId not in SETTINGS['ALLOW_GROUP']:
         return
+    if groupId in SETTINGS['DANMU_GROUP']:
+        msgQueue.put(purgeMsg(context['message']))
     global GroupDict
     try:
         if (GroupDict.get(groupId) == None):
@@ -83,11 +95,11 @@ async def send_new_day_msg():
 def sche():
     scheduler = AsyncIOScheduler()
     # TODO: fit for all environments with different timezone, this is for 0 timezone
-    scheduler.add_job(send_early_msg, 'cron', hour="20", minute="0")
-    scheduler.add_job(send_new_day_msg, 'cron', hour="16", minute="0")
+    scheduler.add_job(send_early_msg, 'cron', hour="3", minute="0")
+    scheduler.add_job(send_new_day_msg, 'cron', hour="0", minute="0")
     scheduler.start()
 
 
 if __name__ == '__main__':
     sche()
-    bot.run(host='127.0.0.1', port=8090)
+    bot.run(host='0.0.0.0', port=8090)
