@@ -7,6 +7,7 @@ import json
 import os
 import logging
 import urllib
+import copy
 from util import load_json
 
 FULL_MODE = True
@@ -45,6 +46,7 @@ class Bot:
         self.msgID = 0
         self.lastSetuMsgID = 0
         self.lastSetuMsg = ''
+        self.ans24 = ''
         if FULL_MODE:
             self.bh = BookingHelper()
             self.ih = InfoHelper()
@@ -58,9 +60,9 @@ class Bot:
         self.msg = self.msg.replace('\r', '')
         self.msg = re.sub(r'\[CQ:image,file=.+\]', '', self.msg)
         self.msg = re.sub(
-            r'/舔|/笑哭|/doge|/泪奔|/无奈|/托腮|/卖萌|/斜眼笑|/喷血|/惊喜|/骚扰|/小纠结|/我最美|' + \
-            r'/茶|/蛋|/红包|/河蟹|/羊驼|/菊花|/幽灵|/大笑|/不开心|/冷漠|/呃|/好棒|/拜托|/点赞|' + \
-            r'/无聊|/托脸|/吃|/送花|/害怕|/花痴|/小样儿|/飙泪|/我不看|/啵啵|/糊脸|/拍头|/扯一扯|' + \
+            r'/舔|/笑哭|/doge|/泪奔|/无奈|/托腮|/卖萌|/斜眼笑|/喷血|/惊喜|/骚扰|/小纠结|/我最美|' +
+            r'/茶|/蛋|/红包|/河蟹|/羊驼|/菊花|/幽灵|/大笑|/不开心|/冷漠|/呃|/好棒|/拜托|/点赞|' +
+            r'/无聊|/托脸|/吃|/送花|/害怕|/花痴|/小样儿|/飙泪|/我不看|/啵啵|/糊脸|/拍头|/扯一扯|' +
             r'/舔一舔|/蹭一蹭|/拽炸天|/顶呱呱',
             '', self.msg)
         self.msg = msg.strip().strip('\n')
@@ -119,6 +121,34 @@ class Bot:
                     self.res = self.getReply('switch_on_successful')
             else:
                 self.res = self.getReply('switch_on_already')
+    
+    # recursively solve 24 points
+    def solve24(self, num):
+        try:
+            eval(num[-1])
+        except:
+            return 0
+        if len(num) == 1:
+            if abs(eval(num[0])-24) < 0.00001:
+                self.ans24 = num[0]+'=24' #need a global variable(
+                return 1
+        for k in ['+', '-', '*', '/']:
+            for i in range(0, len(num)):
+                for j in range(0, len(num)):
+                    if(i != j):
+                        rest = copy.deepcopy(num)
+                        a, b = num[i], num[j]
+                        rest.append('('+a+k+b+')')
+                        rest.remove(a)
+                        rest.remove(b)
+                        if self.solve24(rest):
+                            return 1
+    
+    # get answer of 24 points
+    def get24(self, num):
+        self.ans24 = ''
+        self.solve24(num)
+        return self.ans24
 
     # special reply for message starting with '#'
     def replyFunction(self):
@@ -133,6 +163,12 @@ class Bot:
         if tmp_reg:
             res = self.getCourseInfo(tmp_reg.group(1))
             self.res = res if res else self.getReply("course_failed")
+            return
+        tmp_reg = re.search(
+            r'算 *([0-9]{1,2} *[0-9]{1,2} *[0-9]{1,2} *[0-9]{1,2})', self.msg)
+        if tmp_reg:
+            res = self.get24(tmp_reg.group(1).split())
+            self.res = res if res else self.getReply("24_failed")
             return
 
     def getThrow(self, keyword):
@@ -200,8 +236,8 @@ class Bot:
                     self.res = self.msg
             elif myrand >= 1 - Bot.SETTINGS['NOT_XM_PR']:  # 避免循环羡慕
                 if self.msg not in self.selfArr and \
-                 '呸，老子才不羡慕' + re.sub(r'^xm|^羡慕', '', self.msg) \
-                  not in self.selfArr:
+                    '呸，老子才不羡慕' + re.sub(r'^xm|^羡慕', '', self.msg) \
+                        not in self.selfArr:
                     self.res = '呸，老子才不羡慕' + re.sub(r'^xm|^羡慕', '', self.msg)
 
     # check keywords
@@ -304,8 +340,8 @@ class Bot:
 
     def getFullModeReply(self):
         if self.context['group_id'] not in Bot.SETTINGS['ADMIN_GROUP'] and \
-            self.context['user_id'] not in Bot.SETTINGS['ADMIN'] or \
-            not FULL_MODE:
+                self.context['user_id'] not in Bot.SETTINGS['ADMIN'] or \
+                not FULL_MODE:
             return
         if not re.search(r'^#|不够色', self.msg):
             return
