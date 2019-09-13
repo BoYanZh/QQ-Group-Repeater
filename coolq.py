@@ -1,4 +1,4 @@
-from aiocqhttp import CQHttp, ApiError, jsonify
+from aiocqhttp import CQHttp, ApiError, jsonify, request
 import os
 import random
 import QGroupRepeater
@@ -17,19 +17,19 @@ logging.basicConfig(
     '%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S',
     filename=os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                          'QGroupRepeater.log'),
+                          'coolq.log'),
     filemode='w+')
 
 bot = CQHttp(api_root='http://127.0.0.1:5700/')
 app = bot.server_app
 
 GroupDict = dict()
-SETTINGS = load_json("settings.json")
-REPLY = load_json('reply.json')
+SETTINGS = load_json('settings.json')
+REPLY = load_json('data/reply.json')
 msgQueue = Queue()
 
 
-@app.route('/danmu')
+@app.route('/danmu/coolq')
 async def danmu():
     re = []
     while not msgQueue.empty():
@@ -48,10 +48,13 @@ async def handle_private(context):
 @bot.on_message('group')
 async def handle_msg(context):
     groupId = context['group_id']
+    if groupId in SETTINGS['DANMU_GROUP']:
+        msgQueue.put({
+            'sender': context['user_id'],
+            'msg': purgeMsg(context['message'])
+        })
     if groupId not in SETTINGS['ALLOW_GROUP']:
         return
-    if groupId in SETTINGS['DANMU_GROUP']:
-        msgQueue.put(purgeMsg(context['message']))
     global GroupDict
     try:
         if (GroupDict.get(groupId) == None):
@@ -78,7 +81,7 @@ async def handle_group_request(context):
 
 async def send_early_msg():
     await asyncio.sleep(int(random.random() * 60 * 60) + 900)
-    time_format = "%Y-%m-%d %H:%M:%S"
+    time_format = '%Y-%m-%d %H:%M:%S'
     bj_offset = timezone(timedelta(hours=8))
     bj_datetime = datetime.now(bj_offset)
     re = random.choice(REPLY['on_early'])
@@ -95,8 +98,8 @@ async def send_new_day_msg():
 def sche():
     scheduler = AsyncIOScheduler()
     # TODO: fit for all environments with different timezone, this is for 0 timezone
-    scheduler.add_job(send_early_msg, 'cron', hour="3", minute="0")
-    scheduler.add_job(send_new_day_msg, 'cron', hour="0", minute="0")
+    scheduler.add_job(send_early_msg, 'cron', hour='3', minute='0')
+    scheduler.add_job(send_new_day_msg, 'cron', hour='0', minute='0')
     scheduler.start()
 
 

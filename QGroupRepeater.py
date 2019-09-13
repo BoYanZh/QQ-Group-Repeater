@@ -287,7 +287,7 @@ class Bot:
                 Bot.STUDIED_REPLY[ask]["answers"].append(ans)
                 Bot.STUDIED_REPLY[ask]["adders"].append(
                     self.context['user_id'])
-                with open("study.json", 'w', encoding='UTF-8') as f:
+                with open("data/study.json", 'w', encoding='UTF-8') as f:
                     json.dump(Bot.STUDIED_REPLY,
                               f,
                               ensure_ascii=False,
