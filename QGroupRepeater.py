@@ -120,12 +120,29 @@ class Bot:
             else:
                 self.res = self.getReply('switch_on_already')
 
+    def cleanBracketsFor24(self, equ):
+        equ = list(equ)
+        brackets, re = [], []
+        for i in range(len(equ)):
+            if equ[i] == '(':
+                re.append(i)
+            if equ[i] == ')':
+                brackets.append([re.pop(), i])
+        for pair in brackets:
+            tmpEqu = equ.copy()
+            tmpEqu[pair[0]] = ''
+            tmpEqu[pair[1]] = ''
+            if eval(''.join(tmpEqu)) == 24:
+                equ = tmpEqu
+        return ''.join(equ)
+
     # recursively solve 24 points
     def solve24(self, num):
         if len(num) == 1:
             try:
                 if abs(eval(num[0]) - 24) < 0.00001:
-                    return f'{num[0]} = 24'
+                    re = self.cleanBracketsFor24(num[0][1:-1])
+                    return f'{re} = 24'
             except ZeroDivisionError:
                 return None
         for k in '+-*/':
@@ -400,7 +417,7 @@ if __name__ == "__main__":
     MyBot = Bot(123456)
     print(
         MyBot.responseMsg({
-            'message': "#算2 3 3 0",
+            'message': "#算3 3 7 7",
             'self_id': 123456,
             'user_id': 123456
         }))
