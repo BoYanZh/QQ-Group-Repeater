@@ -126,9 +126,9 @@ class Bot:
             try:
                 if abs(eval(num[0]) - 24) < 0.00001:
                     return f'{num[0]} = 24'
-            except:
+            except ZeroDivisionError:
                 return None
-        for k in ['+', '-', '*', '/']:
+        for k in '+-*/^':
             for i in range(0, len(num)):
                 for j in range(0, len(num)):
                     if (i != j):
@@ -156,7 +156,7 @@ class Bot:
             r'算 *([0-9]{1,2} *[0-9]{1,2} *[0-9]{1,2} *[0-9]{1,2})', self.msg)
         if tmp_reg:
             res = self.solve24(tmp_reg.group(1).split())
-            self.res = res if res != '' else self.getReply("24_failed")
+            self.res = res if res else self.getReply("24_failed")
             return
 
     def getThrow(self, keyword):
@@ -327,7 +327,7 @@ class Bot:
                 return
 
     def getFullModeReply(self):
-        if self.self.fromGroup not in Bot.SETTINGS['ADMIN_GROUP'] and \
+        if self.fromGroup not in Bot.SETTINGS['ADMIN_GROUP'] and \
             self.context['user_id'] not in Bot.SETTINGS['ADMIN'] or \
             not FULL_MODE:
             return
@@ -400,7 +400,7 @@ if __name__ == "__main__":
     MyBot = Bot(123456)
     print(
         MyBot.responseMsg({
-            'message': "#算4 1 6 1",
+            'message': "#算2 3 3 0",
             'self_id': 123456,
             'user_id': 123456
         }))
