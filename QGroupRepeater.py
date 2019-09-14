@@ -123,14 +123,14 @@ class Bot:
     # recursively solve 24 points
     def solve24(self,num):
         try:
-            if len(num) == 1: return num[0]+'=24' if abs(eval(num[0])-24) < 0.00001 else ''
-            for k in ['+', '-', '*', '/']:
-                for i in range(0, len(num)):
-                    for j in range(0, len(num)):
-                        if(i != j):
-                            tmp=solve24(num[0:min(i,j)]+num[min(i,j)+1:max(i,j)]+num[max(i,j)+1:len(num)]+['('+num[i]+k+num[j]+')'])
-                            if tmp!='': return tmp
+            if len(num) == 1: return num[0] + '=24' if abs(eval(num[0]) - 24) < 0.00001 else ''
         except: return ''
+        for k in ['+', '-', '*', '/']:
+            for i in range(0, len(num)):
+                for j in range(0, len(num)):
+                    if(i != j):
+                        tmp=self.solve24(num[0:min(i,j)]+num[min(i,j)+1:max(i,j)]+num[max(i,j)+1:len(num)]+['('+num[i]+k+num[j]+')'])
+                        if tmp!='': return tmp
         return ''
 
     # special reply for message starting with '#'
