@@ -170,7 +170,7 @@ class Bot:
             self.res = res if res else self.getReply("course_failed")
             return
         tmp_reg = re.search(
-            r'算 *([0-9]{1,2} *[0-9]{1,2} *[0-9]{1,2} *[0-9]{1,2})', self.msg)
+            r'算 *([0-9]{1,10} +[0-9]{1,10} +[0-9]{1,10} +[0-9]{1,10})$', self.msg)
         if tmp_reg:
             res = self.solve24(tmp_reg.group(1).split())
             self.res = res if res else self.getReply("24_failed")
