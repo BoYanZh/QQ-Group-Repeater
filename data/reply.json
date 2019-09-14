@@ -18,6 +18,7 @@
     "study_successful": ["学会了", "学到了", "mbl"],
     "study_failed": ["学过了"],
     "course_failed": ["查不着", "没上过"],
+    "24_failed": ["我觉得不太行", "你算一个试试？"],
     "FIXED_REPLY_DICT": {
         "AT": ["guna，别烦我", "为什么要召唤我？"]
     },

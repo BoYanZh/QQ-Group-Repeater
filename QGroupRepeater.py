@@ -120,6 +120,19 @@ class Bot:
             else:
                 self.res = self.getReply('switch_on_already')
 
+    # recursively solve 24 points
+    def solve24(self,num):
+        try:
+            if len(num) == 1: return num[0] + '=24' if abs(eval(num[0]) - 24) < 0.00001 else ''
+        except: return ''
+        for k in ['+', '-', '*', '/']:
+            for i in range(0, len(num)):
+                for j in range(0, len(num)):
+                    if(i != j):
+                        tmp=self.solve24(num[0:min(i,j)]+num[min(i,j)+1:max(i,j)]+num[max(i,j)+1:len(num)]+['('+num[i]+k+num[j]+')'])
+                        if tmp!='': return tmp
+        return ''
+
     # special reply for message starting with '#'
     def replyFunction(self):
         if not re.search(r'^#', self.msg):
@@ -133,6 +146,12 @@ class Bot:
         if tmp_reg:
             res = self.getCourseInfo(tmp_reg.group(1))
             self.res = res if res else self.getReply("course_failed")
+            return
+        tmp_reg = re.search(
+            r'算 *([0-9]{1,2} *[0-9]{1,2} *[0-9]{1,2} *[0-9]{1,2})', self.msg)
+        if tmp_reg:
+            res = self.solve24(tmp_reg.group(1).split())
+            self.res = res if res!='' else self.getReply("24_failed")
             return
 
     def getThrow(self, keyword):
