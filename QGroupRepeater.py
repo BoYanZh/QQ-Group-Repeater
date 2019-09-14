@@ -169,8 +169,7 @@ class Bot:
             res = self.getCourseInfo(tmp_reg.group(1))
             self.res = res if res else self.getReply("course_failed")
             return
-        tmp_reg = re.search(
-            r'算 *([0-9]{1,2} *[0-9]{1,2} *[0-9]{1,2} *[0-9]{1,2})', self.msg)
+        tmp_reg = re.search(r'算\s*((\d{1,5}\s+){3}\d{1,5}\s*)$', self.msg)
         if tmp_reg:
             res = self.solve24(tmp_reg.group(1).split())
             self.res = res if res else self.getReply("24_failed")
@@ -414,10 +413,10 @@ class Bot:
 
 
 if __name__ == "__main__":
-    MyBot = Bot(123456)
+    MyBot = Bot(123456789)
     print(
         MyBot.responseMsg({
             'message': "#算3 3 7 7",
             'self_id': 123456,
-            'user_id': 123456
+            'user_id': 654321
         }))
