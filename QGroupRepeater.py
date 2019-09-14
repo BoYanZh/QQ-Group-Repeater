@@ -128,7 +128,7 @@ class Bot:
                     return f'{num[0]} = 24'
             except ZeroDivisionError:
                 return None
-        for k in '+-*/^':
+        for k in '+-*/':
             for i in range(0, len(num)):
                 for j in range(0, len(num)):
                     if (i != j):
