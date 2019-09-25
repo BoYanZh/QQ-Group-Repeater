@@ -174,6 +174,14 @@ class Bot:
             res = self.solve24(tmp_reg.group(1).split())
             self.res = res if res else self.getReply("24_failed")
             return
+        tmp_reg = re.search(r'第几周', self.msg)
+        if tmp_reg:
+            self.res = self.getWeek()
+
+    def getWeek(self):
+        d1 = datetime.now()
+        d2 = datetime(2019, 9, 8)
+        return f"今天 {d1.strftime('%m / %d')} 第 {(d1 - d2).days // 7 + 1} 周"
 
     def getThrow(self, keyword):
         res = ''
@@ -416,7 +424,7 @@ if __name__ == "__main__":
     MyBot = Bot(123456789)
     print(
         MyBot.responseMsg({
-            'message': "#算3 3 7 7",
+            'message': "#第几周",
             'self_id': 123456,
             'user_id': 654321
         }))
