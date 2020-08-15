@@ -23,7 +23,7 @@
         "AT": ["guna，别烦我", "为什么要召唤我？"]
     },
     "REG_REPLY_DICT": {
-        "due|deadline|ddl": ["有你水群的时间，gtt能写285份286作业", "那你怎么还在水群？"],
+        "due|deadline|ddl": ["那你怎么还在水群？"],
         "睡不着": ["唉想睡觉"],
         "(\\S+♂){2,}": [
             "BOY♂NEXT♂DOOR", "DEEP♂DARK♂FANTASY", "ASS♂WE♂CAN",
@@ -36,7 +36,6 @@
             "唐  突  空  格",
             "要  素  察  觉",
             "激  寒  空  格"
-        ],
-        "#托福": ["托福要求：\n听力（Listening）：23\n阅读（Reading）：23\n口语（Speaking）：21\n写作（Writing）：21"]
+        ]
     }
 }

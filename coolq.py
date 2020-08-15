@@ -1,7 +1,7 @@
 from aiocqhttp import CQHttp, ApiError, jsonify, request
 import os
 import random
-import QGroupRepeater
+from Repeater import Repeater
 import logging
 import asyncio
 import time
@@ -21,20 +21,21 @@ logging.basicConfig(
     filemode='w+')
 
 bot = CQHttp(api_root='http://127.0.0.1:5700/')
-app = bot.server_app
 
 GroupDict = dict()
 SETTINGS = load_json('settings.json')
 REPLY = load_json('data/reply.json')
 msgQueue = Queue()
 
-
-@app.route('/danmu/coolq')
-async def danmu():
-    re = []
-    while not msgQueue.empty():
-        re.append(msgQueue.get())
-    return jsonify(re)
+# app = bot.server_app
+# @app.route('/danmu/coolq')
+# async def danmu():
+#     if request.remote_addr and request.remote_addr != '127.0.0.1':
+#         return None
+#     re = []
+#     while not msgQueue.empty():
+#         re.append(msgQueue.get())
+#     return jsonify(re)
 
 
 @bot.on_message('private')
@@ -51,18 +52,20 @@ async def handle_msg(context):
     if groupId in SETTINGS['DANMU_GROUP']:
         msgQueue.put({
             'sender': context['user_id'],
-            'msg': purgeMsg(context['message'])
+            'msg': context['message']
+            # 'msg': purgeMsg(context['message'])
         })
     if groupId not in SETTINGS['ALLOW_GROUP']:
         return
     global GroupDict
     try:
         if (GroupDict.get(groupId) == None):
-            GroupDict[groupId] = QGroupRepeater.Bot(groupId)
-        re = GroupDict[groupId].responseMsg(context)
-        print(context['message'], re)
-        return await bot.send(context, message=re) if (len(re) > 0) else 0
+            GroupDict[groupId] = Repeater()
+        re = await GroupDict[groupId].responseMsg(context)
+        print({"msg": context['message'], "ans": re})
+        return await bot.send({'group_id': groupId}, message=re) if (len(re) > 0) else 0
     except Exception as e:
+        print({"msg": context['message'], "ans": "ERROR"})
         logging.exception(e)
 
 
