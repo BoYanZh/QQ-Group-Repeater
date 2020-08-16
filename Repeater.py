@@ -22,13 +22,13 @@ async def aioGet(url):
 def Repeater():
     bot = Bot()
 
-    async def getReply(key):
+    def getReply(key):
         re = Bot.REPLY.get(key)
         return random.choice(re) if re else ''
 
     # recursively solve 24 points
-    async def solve24(num):
-        async def cleanBracketsFor24(equ):
+    def solve24(num):
+        def cleanBracketsFor24(equ):
             equ = list(equ)
             brackets, re = [], []
             for i in range(len(equ)):
@@ -298,16 +298,13 @@ def Repeater():
 
 async def test():
     repeater = Repeater()
-    for i in range(5):
-        # repeatStr = f"[CQ:image,file=1ddf12b59bb26b99e8e049fbffe64127.image,url=http://gchat.qpic.cn/gchatpic_new/1623464502/925787157-{random.randint(1000000,9999999)}-1DDF12B59BB26B99E8E049FBFFE64127/0?term=2]"
-        repeatStr = "#大白猫"
-        re = await repeater.responseMsg({
-            'message': repeatStr,
-            'self_id': 123456,
-            'user_id': 1623464502,
-            'group_id': 925787157
-        })
-        print(i, re)
+    re = await repeater.responseMsg({
+        'message': "#算2 4 10 10",
+        'self_id': 123456,
+        'user_id': 1623464502,
+        'group_id': 925787157
+    })
+    print(re)
 
 
 if __name__ == "__main__":
