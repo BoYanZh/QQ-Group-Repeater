@@ -125,6 +125,17 @@ def Repeater():
         res = res.strip()
         return res if res else self.getReply("course_failed")
 
+    @bot.onCommand(r'查([\s\S]{2,})')
+    async def replyContacts(self):
+        tmp_reg = re.search(r'查([\s\S]{2,})', self.msg)
+        keyword = tmp_reg.group(1)
+        keyword = keyword.lower()
+        res = ""
+        for item in Bot.CONTACTS:
+            if keyword in item['name'].lower() or keyword in ''.join([word[0] for word in item['name'].lower().split() if word]):
+                res += f"姓名：{item['name']}\n职称：{item['title']}\n办公室：{item['office']}\n电话：{item['tel']}\n邮箱：{item['email']}\n照片：[CQ:image,file={item['imageUrl']}]\n"
+        return res if res else self.getReply("contacts_failed")
+
     @bot.onCommand(r'第几周')
     async def replyWeek(self):
         d1 = datetime.now()
@@ -205,35 +216,38 @@ def Repeater():
 
     @bot.onCommand(r'色图|涩图')
     async def getSetu(self):
-        if self.fromGroup not in Bot.SETTINGS['ADMIN_GROUP'] and \
-            self.context['user_id'] not in Bot.SETTINGS['ADMIN']:
-            return
-        res = ""
-        if re.search(r'他的|她的|它的', self.msg):
-            url = "https://yande.re/post.json?limit=1&" + \
-                f"tags=uncensored&page={random.randint(1, 1000)}"
-            tmpJson = json.loads(await aioGet(url))
-            res = tmpJson[0]['file_url']
-        elif re.search(r'色图', self.msg):
-            tag = random.choice(
-                ['breasts', 'stockings', 'thighhighs', 'cleavage'])
-            url = "https://konachan.net/post.json?" + \
-                f"tags={tag}&page={random.randint(1, 100)}"
-            tmpJson = json.loads(await aioGet(url))
-            urls = [
-                item['file_url'] for item in tmpJson if item['rating'] == 's'
-            ]
-            res = random.choice(urls)
-        elif re.search(r'涩图', self.msg):
-            tag = random.choice(['uncensored'])
-            url = "https://konachan.net/post.json?" + \
-                f"tags={tag}&page={random.randint(1, 100)}"
-            tmpJson = json.loads(await aioGet(url))
-            urls = [
-                item['file_url'] for item in tmpJson if item['rating'] != 's'
-            ]
-            res = random.choice(urls)
-        return f"[CQ:image,file={res}]"
+        try:
+            if self.fromGroup not in Bot.SETTINGS['ADMIN_GROUP'] and \
+                self.context['user_id'] not in Bot.SETTINGS['ADMIN']:
+                return
+            res = ""
+            if re.search(r'他的|她的|它的', self.msg):
+                url = "https://yande.re/post.json?limit=1&" + \
+                    f"tags=uncensored&page={random.randint(1, 1000)}"
+                tmpJson = json.loads(await aioGet(url))
+                res = tmpJson[0]['file_url']
+            elif re.search(r'色图', self.msg):
+                tag = random.choice(
+                    ['breasts', 'stockings', 'thighhighs', 'cleavage'])
+                url = "https://konachan.net/post.json?" + \
+                    f"tags={tag}&page={random.randint(1, 100)}"
+                tmpJson = json.loads(await aioGet(url))
+                urls = [
+                    item['file_url'] for item in tmpJson if item['rating'] == 's'
+                ]
+                res = random.choice(urls)
+            elif re.search(r'涩图', self.msg):
+                tag = random.choice(['uncensored'])
+                url = "https://konachan.net/post.json?" + \
+                    f"tags={tag}&page={random.randint(1, 100)}"
+                tmpJson = json.loads(await aioGet(url))
+                urls = [
+                    item['file_url'] for item in tmpJson if item['rating'] != 's'
+                ]
+                res = random.choice(urls)
+            return f"[CQ:image,file={res}]"
+        except:
+            return getReply("get_image_failed")
 
     # reply call
     @bot.on()
@@ -299,7 +313,7 @@ def Repeater():
 async def test():
     repeater = Repeater()
     re = await repeater.responseMsg({
-        'message': "#算2 4 10 10",
+        'message': "#查Manuel",
         'self_id': 123456,
         'user_id': 1623464502,
         'group_id': 925787157

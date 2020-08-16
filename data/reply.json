@@ -19,6 +19,7 @@
     "study_failed": ["学过了"],
     "course_failed": ["查不着", "没上过"],
     "24_failed": ["我觉得不太行", "你算一个试试？"],
+    "contacts_failed": ["这是谁", "不认识"],
     "FIXED_REPLY_DICT": {
         "AT": ["guna，别烦我", "为什么要召唤我？"]
     },
