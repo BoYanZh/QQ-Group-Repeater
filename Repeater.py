@@ -1,4 +1,5 @@
 from Bot import Bot
+import datetime
 import requests
 import aiohttp
 import random
@@ -107,34 +108,34 @@ def Repeater():
             if keyword in courseCode:
                 if resDict.get(courseCode) is None:
                     resDict[courseCode] = item.copy()
-                    resDict[courseCode]['termName'] = [
-                        resDict[courseCode]['termName']
-                    ]
-                else:
-                    resDict[courseCode]['termName'].append(item['termName'])
+                    resDict[courseCode]['termName'] = []
+                    resDict[courseCode]['teams'] = []
+                resDict[courseCode]['termName'].append(item['termName'])
+                resDict[courseCode]['teams'].extend(item['teams'])
         res = ''
         for item in resDict.values():
-            res += "课程代码:{}\n".format(item['courseCode'])
-            res += "课程名称:{} {}\n".format(item['courseName'],
-                                         item['courseNameEn'])
-            res += "学分:{}\n".format(item['credit'])
-            res += "开设时间:"
-            for term in set(item['termName']):
-                res += "{} ".format(term)
-            res += "\n\n"
+            res += f"课程代码:{item['courseCode']}\n"
+            res += f"课程名称:{item['courseName']} {item['courseNameEn']}\n"
+            res += f"学分:{item['credit']}\n"
+            res += f"开设时间:{', '.join(set(item['termName']))}\n"
+            res += f"教师:{', '.join(set(item['teams']))}\n"
         res = res.strip()
         return res if res else self.getReply("course_failed")
 
-    @bot.onCommand(r'查([\s\S]{2,})')
+    @bot.onCommand(r'查([\s\S]{2,})|([\s\S]{2,})是谁')
     async def replyContacts(self):
-        tmp_reg = re.search(r'查([\s\S]{2,})', self.msg)
+        tmp_reg = re.search(r'查([\s\S]{2,})|([\s\S]{2,})是谁', self.msg.lstrip('#'))
         keyword = tmp_reg.group(1)
+        if not keyword:
+            keyword = tmp_reg.group(2)
         keyword = keyword.lower()
+        print(keyword)
         res = ""
         for item in Bot.CONTACTS:
-            if keyword in item['name'].lower() or keyword in ''.join([word[0] for word in item['name'].lower().split() if word]):
+            if keyword in item['name'].lower() or keyword in ''.join(
+                [word[0] for word in item['name'].lower().split() if word]):
                 res += f"姓名：{item['name']}\n职称：{item['title']}\n办公室：{item['office']}\n电话：{item['tel']}\n邮箱：{item['email']}\n照片：[CQ:image,file={item['imageUrl']}]\n"
-        return res if res else self.getReply("contacts_failed")
+        return res.strip() if res else self.getReply("contacts_failed")
 
     @bot.onCommand(r'第几周')
     async def replyWeek(self):
@@ -147,6 +148,13 @@ def Repeater():
         url = "https://api.thecatapi.com/v1/images/search"
         tmpJson = json.loads(await aioGet(url))
         imgUrl = tmpJson[0]["url"]
+        return f"[CQ:image,file={imgUrl}]"
+
+    @bot.onCommand(r'狗图|狗狗')
+    async def replyKitty(self):
+        url = "https://dog.ceo/api/breeds/image/random"
+        tmpJson = json.loads(await aioGet(url))
+        imgUrl = tmpJson["message"]
         return f"[CQ:image,file={imgUrl}]"
 
     @bot.onCommand(r'狐狸图|大白猫|fubuki|小狐狸')
@@ -233,7 +241,8 @@ def Repeater():
                     f"tags={tag}&page={random.randint(1, 100)}"
                 tmpJson = json.loads(await aioGet(url))
                 urls = [
-                    item['file_url'] for item in tmpJson if item['rating'] == 's'
+                    item['file_url'] for item in tmpJson
+                    if item['rating'] == 's'
                 ]
                 res = random.choice(urls)
             elif re.search(r'涩图', self.msg):
@@ -242,7 +251,8 @@ def Repeater():
                     f"tags={tag}&page={random.randint(1, 100)}"
                 tmpJson = json.loads(await aioGet(url))
                 urls = [
-                    item['file_url'] for item in tmpJson if item['rating'] != 's'
+                    item['file_url'] for item in tmpJson
+                    if item['rating'] != 's'
                 ]
                 res = random.choice(urls)
             return f"[CQ:image,file={res}]"
@@ -313,7 +323,7 @@ def Repeater():
 async def test():
     repeater = Repeater()
     re = await repeater.responseMsg({
-        'message': "#查Manuel",
+        'message': "#mc是谁",
         'self_id': 123456,
         'user_id': 1623464502,
         'group_id': 925787157
