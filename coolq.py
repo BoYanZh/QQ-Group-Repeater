@@ -63,7 +63,7 @@ async def handle_msg(context):
             GroupDict[groupId] = Repeater()
         re = await GroupDict[groupId].responseMsg(context)
         print({"msg": context['message'], "ans": re})
-        return await bot.send({'group_id': groupId}, message=re) if (len(re) > 0) else 0
+        await bot.send({'group_id': groupId}, message=re) if (len(re) > 0) else 0
     except Exception as e:
         print({"msg": context['message'], "ans": "ERROR"})
         logging.exception(e)

@@ -118,7 +118,7 @@ def Repeater():
             res += f"课程名称:{item['courseName']} {item['courseNameEn']}\n"
             res += f"学分:{item['credit']}\n"
             res += f"开设时间:{', '.join(set(item['termName']))}\n"
-            res += f"教师:{', '.join(set(item['teams']))}\n"
+            res += f"教师:{', '.join(set(item['teams']))}\n\n"
         res = res.strip()
         return res if res else self.getReply("course_failed")
 
@@ -129,13 +129,27 @@ def Repeater():
         if not keyword:
             keyword = tmp_reg.group(2)
         keyword = keyword.lower()
-        print(keyword)
         res = ""
         for item in Bot.CONTACTS:
             if keyword in item['name'].lower() or keyword in ''.join(
                 [word[0] for word in item['name'].lower().split() if word]):
-                res += f"姓名：{item['name']}\n职称：{item['title']}\n办公室：{item['office']}\n电话：{item['tel']}\n邮箱：{item['email']}\n照片：[CQ:image,file={item['imageUrl']}]\n"
+                res += f"姓名：{item['name']}\n职称：{item['title']}\n办公室：{item['office']}\n电话：{item['tel']}\n邮箱：{item['email']}\n照片：[CQ:image,file={item['imageUrl']}]\n\n"
         return res.strip() if res else self.getReply("contacts_failed")
+
+    @bot.onCommand(r'([\s\S]{2,})教什么')
+    async def replyTeaching(self):
+        tmp_reg = re.search(r'([\s\S]{2,})教什么', self.msg.lstrip('#'))
+        keyword = tmp_reg.group(1)
+        keyword = keyword.lower()
+        res = ""
+        reDict = dict()
+        for item in Bot.COURSES:
+            if keyword in [name.lower() for name in item['teams']]:
+                if reDict.get(item['courseCode']) is None: reDict[item['courseCode']] = []
+                reDict[item['courseCode']].append(item['termName'])
+        for key, value in reDict.items():
+            res += f"{key} ({', '.join(value)})\n"
+        return res.strip() if res else self.getReply("teaching_failed")
 
     @bot.onCommand(r'第几周')
     async def replyWeek(self):
@@ -323,7 +337,7 @@ def Repeater():
 async def test():
     repeater = Repeater()
     re = await repeater.responseMsg({
-        'message': "#mc是谁",
+        'message': "#manuel教什么",
         'self_id': 123456,
         'user_id': 1623464502,
         'group_id': 925787157
