@@ -1,0 +1,9 @@
+site_name: QQGroupRepeater
+repo_url: https://github.com/BoYanZh/QQGroupRepeater
+repo_name: BoYanZh/QQGroupRepeater
+theme:
+  name: material
+markdown_extensions:
+- markdown.extensions.codehilite:
+    guess_lang: true
+- codehilite
