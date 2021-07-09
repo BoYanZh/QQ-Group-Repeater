@@ -60,7 +60,8 @@ def Repeater():
                                       num[min(i, j) + 1:max(i, j)] +
                                       num[max(i, j) + 1:len(num)] +
                                       [f'({num[i]} {k} {num[j]})'])
-                        if tmp: return tmp
+                        if tmp:
+                            return tmp
 
     @bot.onCommand(r'算\s*((\d{1,5}\s+){3}\d{1,5}\s*)$')
     async def reply24(self):
@@ -124,7 +125,8 @@ def Repeater():
 
     @bot.onCommand(r'查([\s\S]{2,})|([\s\S]{2,})是谁')
     async def replyContacts(self):
-        tmp_reg = re.search(r'查([\s\S]{2,})|([\s\S]{2,})是谁', self.msg.lstrip('#'))
+        tmp_reg = re.search(
+            r'查([\s\S]{2,})|([\s\S]{2,})是谁', self.msg.lstrip('#'))
         keyword = tmp_reg.group(1)
         if not keyword:
             keyword = tmp_reg.group(2)
@@ -132,7 +134,7 @@ def Repeater():
         res = ""
         for item in Bot.CONTACTS:
             if keyword in item['name'].lower() or keyword in ''.join(
-                [word[0] for word in item['name'].lower().split() if word]):
+                    [word[0] for word in item['name'].lower().split() if word]):
                 res += f"姓名：{item['name']}\n职称：{item['title']}\n办公室：{item['office']}\n电话：{item['tel']}\n邮箱：{item['email']}\n介绍:{item['selfIntrUrl']}\n照片：[CQ:image,file={item['imageUrl']}]\n\n"
         return res.strip() if res else self.getReply("contacts_failed")
 
@@ -145,7 +147,8 @@ def Repeater():
         reDict = dict()
         for item in Bot.COURSES:
             if keyword in [name.lower() for name in item['teams']]:
-                if reDict.get(item['courseCode']) is None: reDict[item['courseCode']] = []
+                if reDict.get(item['courseCode']) is None:
+                    reDict[item['courseCode']] = []
                 reDict[item['courseCode']].append(item['termName'])
         for key, value in reDict.items():
             res += f"{key} ({', '.join(value)})\n"
@@ -199,7 +202,7 @@ def Repeater():
         elif myrand >= 1 - Bot.SETTINGS['NOT_XM_PR']:  # 避免循环羡慕
             if self.msg not in self.selfArr and \
                 '呸，老子才不羡慕' + re.sub(r'^xm|^羡慕', '', self.msg) \
-                not in self.selfArr:
+                    not in self.selfArr:
                 return '呸，老子才不羡慕' + re.sub(r'^xm|^羡慕', '', self.msg)
 
     @bot.on(r"问：([\s\S]+)\s+答：([\s\S]+)")
@@ -240,7 +243,7 @@ def Repeater():
     async def getSetu(self):
         try:
             if self.fromGroup not in Bot.SETTINGS['ADMIN_GROUP'] and \
-                self.context['user_id'] not in Bot.SETTINGS['ADMIN']:
+                    self.context['user_id'] not in Bot.SETTINGS['ADMIN']:
                 return
             res = ""
             if re.search(r'他的|她的|它的', self.msg):

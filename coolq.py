@@ -13,8 +13,7 @@ from queue import Queue
 
 logging.basicConfig(
     level=logging.INFO,
-    format=
-    '%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S',
     filename=os.path.join(os.path.abspath(os.path.dirname(__file__)),
                           'coolq.log'),
@@ -28,8 +27,8 @@ REPLY = load_json('data/reply.json')
 msgQueue = Queue()
 
 #app = bot.server_app
-#@app.route('/danmu/coolq')
-#async def danmu():
+# @app.route('/danmu/coolq')
+# async def danmu():
 #    if request.remote_addr and request.remote_addr != '127.0.0.1':
 #        return None
 #    re = []
