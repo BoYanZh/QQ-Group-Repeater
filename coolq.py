@@ -39,10 +39,18 @@ msgQueue = Queue()
 
 @bot.on_message('private')
 async def handle_private(context):
-    await bot.send(context, message=context['message'])
-    if context['user_id'] in SETTINGS['ADMIN']:
-        for group_id in SETTINGS['REPOST_GROUP']:
-            await bot.send({'group_id': group_id}, message=context['message'])
+    # await bot.send(context, message=context['message'])
+    # if context['user_id'] in SETTINGS['ADMIN']:
+    #    for group_id in SETTINGS['REPOST_GROUP']:
+    #        await bot.send({'group_id': group_id}, message=context['message'])
+    # else
+    try:
+        re = await Repeater().responseMsg(context)
+        print({"msg": context['message'], "ans": re})
+        await bot.send({'user_id': context['user_id']}, message=re) if (len(re) > 0) else 0
+    except Exception as e:
+        print({"msg": context['message'], "ans": "ERROR"})
+        logging.exception(e)
 
 
 @bot.on_message('group')

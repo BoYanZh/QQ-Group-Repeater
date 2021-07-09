@@ -123,14 +123,15 @@ def Repeater():
         res = res.strip()
         return res if res else self.getReply("course_failed")
 
-    @bot.onCommand(r'查([\s\S]{2,})|([\s\S]{2,})是谁')
+    @bot.onCommand(r'查([\s\S]{1,})|([\s\S]{1,})是谁')
     async def replyContacts(self):
         tmp_reg = re.search(
-            r'查([\s\S]{2,})|([\s\S]{2,})是谁', self.msg.lstrip('#'))
+            r'查([\s\S]{1,})|([\s\S]{1,})是谁', self.msg.lstrip('#').lstrip(' '))
         keyword = tmp_reg.group(1)
         if not keyword:
             keyword = tmp_reg.group(2)
-        keyword = keyword.lower()
+        keyword = keyword.lower().lstrip(' ')
+        print(keyword)
         res = ""
         for item in Bot.CONTACTS:
             if keyword in item['name'].lower() or keyword in ''.join(

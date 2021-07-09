@@ -56,7 +56,7 @@ class Bot:
         self.context = context
         # self.beginTimeStamp = time.time()
         self.res = ''
-        self.fromGroup = context['group_id']
+        # self.fromGroup = context['group_id']
         # purge msg
         self.msg = context['message']
         self.msg = self.msg.replace('\r', '')
