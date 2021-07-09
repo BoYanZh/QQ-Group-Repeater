@@ -1,7 +1,5 @@
 # QQGroupRepeater
 
-
-
 A chat bot for QQ group based on ~~CoolQ~~ python-aiocqhttp, using cqhttp protocol.
 
 ## Usage
@@ -10,43 +8,75 @@ A chat bot for QQ group based on ~~CoolQ~~ python-aiocqhttp, using cqhttp protoc
 
 Due to the policy of tencent, the bot is currently using [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) as cqhttp backend. And it is just an example. You can refer to the documentation of go-cqhttp for more details.
 
-The `config.json` for go-cqhttp may looks like this:
+The [`config.yml`](https://docs.go-cqhttp.org/guide/config.html) for go-cqhttp may looks like this:
 
-```json
-{
-        "uin": 123456,
-        "password": "654321",
-        "encrypt_password": false,
-        "password_encrypted": "",
-        "enable_db": true,
-        "access_token": "",
-        "relogin": true,
-        "relogin_delay": 3,
-        "http_config": {
-                "enabled": false,
-                "host": "0.0.0.0",
-                "port": 5700,
-                "timeout": 0,
-                "post_urls": {"0.0.0.0:8090": ""},
-                "post_message_format": "string"
-        },
-        "ws_config": {
-                "enabled": true,
-                "host": "0.0.0.0",
-                "port": 6700
-        },
-        "ws_reverse_servers": [
-                {
-                        "enabled": true,
-                        "reverse_url": "ws://127.0.0.1:8090/ws/",
-                        "reverse_reconnect_interval": 3000
-                }
-        ],
-        "debug": false
-}
+```yml
+account: 
+  uin: ID 
+  password: 'pass' 
+  encrypt: false  
+  status: 0      
+  relogin: 
+    delay: 3   
+    interval: 3   
+    max-times: 5  
+  use-sso-address: false
+
+heartbeat:
+  interval: 5
+
+message:
+  post-format: string
+  ignore-invalid-cqcode: false
+  force-fragment: false
+  fix-url: false
+  proxy-rewrite: ''
+  report-self-message: false
+  remove-reply-at: false
+  extra-reply-data: false
+
+output:
+  log-level: warn
+  debug: false 
+
+default-middlewares: &default
+  access-token: ''
+  filter: ''
+  rate-limit:
+    enabled: false 
+    frequency: 1  
+    bucket: 1     
+
+database: 
+  leveldb:
+    enable: true
+
+servers:
+
+  - http:
+      host: 127.0.0.1
+      port: 5700
+      timeout: 5
+      middlewares:
+        <<: *default 
+      post:
+  - ws:
+      host: 127.0.0.1
+      port: 6700
+      middlewares:
+        <<: *default 
+  - ws-reverse:
+      universal: ws://127.0.0.1:8090/ws/
+      reconnect-interval: 3000
+      middlewares:
+        <<: *default 
+  - pprof:
+      host: 127.0.0.1
+      port: 7700
+
 ```
 
-Launch go-cqhttp. The go-cqhttp is not that stable so I add a crontab to restart it every 30 minutes.
+Check the port and then launch go-cqhttp. The ws-reverse connection may fail until the starting of bot.The go-cqhttp is not that stable so I add a crontab to restart it every 30 minutes.
 
 ### Start the bot
 
