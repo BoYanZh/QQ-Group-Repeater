@@ -151,14 +151,14 @@ def Repeater():
         if (len(keyword) == 1 and ((re.search(r'[a-z]|[A-Z]', keyword)))):
             res = "结果过多"
         else:
-        reDict = dict()
-        for item in Bot.COURSES:
-            if keyword in [name.lower() for name in item['teams']]:
-                if reDict.get(item['courseCode']) is None:
-                    reDict[item['courseCode']] = []
-                reDict[item['courseCode']].append(item['termName'])
-        for key, value in reDict.items():
-            res += f"{key} ({', '.join(value)})\n"
+            reDict = dict()
+            for item in Bot.COURSES:
+                if keyword in [name.lower() for name in item['teams']]:
+                    if reDict.get(item['courseCode']) is None:
+                        reDict[item['courseCode']] = []
+                    reDict[item['courseCode']].append(item['termName'])
+            for key, value in reDict.items():
+                res += f"{key} ({', '.join(value)})\n"
         return res.strip() if res else self.getReply("teaching_failed")
 
     @bot.onCommand(r'第几周')

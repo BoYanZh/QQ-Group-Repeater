@@ -1,30 +1,12 @@
 [
     {
-        "name": "鲍华 Hua Bao",
-        "title": "副教授 Associate Professor",
-        "office": "522",
-        "tel": "+86-21-34206765 Ext. 5221",
-        "email": "hua.bao@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-03275-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/23"
-    },
-    {
-        "name": "毕尤一 Youyi Bi",
-        "title": "助理教授 Assistant Professor",
-        "office": "530",
-        "tel": "+86-21-3420-6075 ext. 5301",
-        "email": "youyi.bi@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Youyi-Bi1-1-118x150.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/24"
-    },
-    {
-        "name": "薄首行 Shouhang Bo",
-        "title": "副教授 Associate Professor",
-        "office": "534",
-        "tel": "+86-21-34206765 Ext. 5341",
-        "email": "shouhang.bo@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-01826-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/25"
+        "name": "Amalia Corina Jiva Amalia Corina Jiva",
+        "title": "副教授 Associate Teaching Professor",
+        "office": "407C",
+        "tel": "+86-21-34206765 Ext. 4073",
+        "email": "Amalia.Jiva@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Amalia-Jiva.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/94"
     },
     {
         "name": "Michele Campbell Michele Campbell",
@@ -36,71 +18,26 @@
         "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/26"
     },
     {
-        "name": "Manuel Charlemagne Manuel Charlemagne",
-        "title": "助理教授 Assistant Teaching Professor",
-        "office": "437A",
-        "tel": "+86-21-34206765 Ext. 4371",
-        "email": "charlem@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Manuel-Charlemagne.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/76"
-    },
-    {
-        "name": "陈谦斌 Chien-Pin Chen",
-        "title": "副院长 & 教授 Asso. Dean / Professor",
-        "office": "400C",
-        "tel": "+86-21-34206765 Ext. 4003",
-        "email": "chienpin.chen@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02564-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/77"
-    },
-    {
-        "name": "陈倩栎 Qianli Chen",
+        "name": "邹桉 An Zou",
         "title": "助理教授 Assistant Professor",
-        "office": "540",
-        "tel": "+86-21-34206765 Ext. 5401",
-        "email": "qianli.chen@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02219-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/78"
+        "office": "421",
+        "tel": "+86-21-34206765 Ext.4211",
+        "email": "an.zou@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Zou-An.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/28819"
     },
     {
-        "name": "陈松良 Sung-Liang Chen",
-        "title": "助理教授 Associate Professor",
-        "office": "428",
-        "tel": "+86-21-34206765 Ext. 4281",
-        "email": "sungliang.chen@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-04130-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/83"
+        "name": "杨康裕 Andrew Yang",
+        "title": "高级讲师 Senior lecturer",
+        "office": "407A",
+        "tel": "+86-21-34206765 Ext. 4071",
+        "email": "andrew.yang@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-03086-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/143"
     },
     {
-        "name": "但亚平 En-Ling Chiao",
-        "title": "副教授 Assistant Teaching Professor",
-        "office": "516",
-        "tel": "+86-021-34206765 Ext. 5161",
-        "email": "yaping.dan@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-01947-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/86"
-    },
-    {
-        "name": "Olga Danilkina Yuljae Cho",
-        "title": "副教授 Assistant Professor",
-        "office": "437B",
-        "tel": "+86-21-34206765 Ext. 4372",
-        "email": "olga.danilkina@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Olga-Danilkina.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/85"
-    },
-    {
-        "name": "Roberto Dugnani Yaping Dan",
-        "title": "副教授 Associate Professor",
-        "office": "518",
-        "tel": "+86-21-34206765 Ext. 5181",
-        "email": "roberto.dugnani@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Roberto-e1369881544293.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/87"
-    },
-    {
-        "name": "杜长庆 Olga Danilkina",
-        "title": "助理教授 Associate Teaching Professor",
+        "name": "杜长庆 Chang-Ching Tu",
+        "title": "助理教授 Assistant Professor",
         "office": "508",
         "tel": "+86-21-34206765 Ext. 5081",
         "email": "changching.tu@sjtu.edu.cn",
@@ -108,157 +45,13 @@
         "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/126"
     },
     {
-        "name": "郭云龙 Roberto Dugnani",
-        "title": "副教授 Associate Professor",
-        "office": "510",
-        "tel": "+86-21-34206765 Ext. 5101",
-        "email": "yunlong.guo@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02169-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/89"
-    },
-    {
-        "name": "郭鑫斐 Yunlong Guo",
-        "title": "助理教授 Associate Professor",
-        "office": "419",
-        "tel": "+86-21-3420-6765 Ext. 4191",
-        "email": "xinfei.guo@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/202105171.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/28808"
-    },
-    {
-        "name": "韩充 Xinfei Guo",
-        "title": "副教授 Assistant Professor",
-        "office": "408",
-        "tel": "+86-21-34206765 Ext. 4081",
-        "email": "chong.han@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Chong-Han-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/90"
-    },
-    {
-        "name": "火色特 Chong Han",
-        "title": "副教授 Associate Professor",
-        "office": "441C",
-        "tel": "+86-21-34206765 Ext. 4413",
-        "email": "horst@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Horst-Hohberger-2.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/91"
-    },
-    {
-        "name": "黄佩森 Horst Harold Hohberger",
-        "title": "院长 & 教授 Associate Teaching Professor",
-        "office": "400A",
-        "tel": "+86-21-34206765 Ext. 4001",
-        "email": "peisen.huang@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02732-150x190-2.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/92"
-    },
-    {
-        "name": "焦恩临 Peisen Huang",
-        "title": "助理教授 Dean / Professor",
-        "office": "405A",
-        "tel": "+86-21-34206765 Ext.4051",
-        "email": "enling.chiao@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/En-Ling-Chiao.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/3114"
-    },
-    {
-        "name": "金力 David Hung",
-        "title": "助理教授 Associate Dean / Professor",
-        "office": "424",
-        "tel": "+86-21-34206765 Ext. 4241",
-        "email": "li.jin@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02361-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/25039"
-    },
-    {
-        "name": "Amalia Corina Jiva Li Jin",
-        "title": "副教授 Assistant Professor",
-        "office": "407C",
-        "tel": "+86-21-34206765 Ext. 4073",
-        "email": "Amalia.Jiva@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Amalia-Jiva.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/94"
-    },
-    {
-        "name": "Shane Miguel Johnson Amalia Corina Jiva",
-        "title": "副教授 Associate Teaching Professor",
-        "office": "506",
-        "tel": "+86-21-34206765 Ext. 5061",
-        "email": "shane.johnson@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Shane-e1369883333885.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/95"
-    },
-    {
-        "name": "孔令逊 Shane Miguel Johnson",
-        "title": "副院长 & 教授 Associate Professor",
-        "office": "400D",
-        "tel": "+86-21-34206765 Ext. 4004",
-        "email": "dhung@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/David-Hung.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/93"
-    },
-    {
-        "name": "李杰 Jaehyung “Joshua” Ju",
-        "title": "兼职教授 Associate Professor",
-        "office": "404",
-        "tel": "+86-21-3420-6045 Ext.4041",
-        "email": "jieli@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/image02-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/3291"
-    },
-    {
-        "name": "李冕 Mateusz Stanislaw Krzyzosiak",
-        "title": "副教授 Associate Teaching Professor",
-        "office": "520",
-        "tel": "+86-21-34206765 Ext. 5201",
-        "email": "mianli@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Mian-Li_PerfectlyClear.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/3292"
-    },
-    {
-        "name": "刘悦纳 Jie Li",
-        "title": "副教授（双聘） Adjunct professor",
-        "office": "",
-        "tel": "+86-21-54740031",
-        "email": "nanaliu@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Nana-Liu.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/3755"
-    },
-    {
-        "name": "龙泳 Mian Li",
-        "title": "助理教授 Associate Professor",
-        "office": "402",
-        "tel": "+86-21-34205661 Ext. 4021",
-        "email": "yong.long@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02674-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/102"
-    },
-    {
-        "name": "卢旭阳 Nana Liu",
-        "title": "助理教授 Associate Professor (dual appointment)",
-        "office": "422",
-        "tel": "+86-21-34206765 Ext. 4221",
-        "email": "xuyang.lu@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-03046-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/18750"
-    },
-    {
-        "name": "卢承哲 Yong Long",
-        "title": "副教授 Assistant Professor",
-        "office": "409C",
-        "tel": "+86-21-34206765 Ext. 4093",
-        "email": "soong-chul.ro@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02298-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/115"
-    },
-    {
-        "name": "马良 Xuyang Lu",
-        "title": "副教授 Assistant Professor",
-        "office": "439C",
-        "tel": "+86-21-34206765 Ext. 4393",
-        "email": "m.krzyzosiak@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Mateusz-Krzyzosiak-e1368430699736.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/97"
+        "name": "Manuel Charlemagne Manuel Charlemagne",
+        "title": "助理教授 Assistant Teaching Professor",
+        "office": "437A",
+        "tel": "+86-21-34206765 Ext. 4371",
+        "email": "charlem@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Manuel-Charlemagne.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/76"
     },
     {
         "name": "马澄斌 Chengbin Ma",
@@ -270,319 +63,22 @@
         "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/104"
     },
     {
-        "name": "Abdelmadjid Mesli Abdelmadjid Mesli",
-        "title": "兼职教授 Adjunct Professor",
-        "office": "",
-        "tel": "+86-21-34206765",
-        "email": "mesli@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Mesli-Abdelmadjid.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/75"
+        "name": "陈谦斌 Chien-Pin Chen",
+        "title": "副院长 & 教授 Asso. Dean / Professor",
+        "office": "400C",
+        "tel": "+86-21-34206765 Ext. 4003",
+        "email": "chienpin.chen@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02564-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/77"
     },
     {
-        "name": "Nathaniel T. Murray Nathaniel T. Murray",
-        "title": "助理教授 Assistant Teaching Professor",
-        "office": "441A",
-        "tel": "+86-21-34206045 Ext. 4411",
-        "email": "nathaniel.murray@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02825-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/106"
-    },
-    {
-        "name": "倪军 Jun Ni",
-        "title": "荣誉院长 & 教授 Honorary Dean / Professor",
-        "office": "571",
-        "tel": "+86-21-34206765 Ext. 5711",
-        "email": "junni@umich.edu",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/junni-150x190.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/107"
-    },
-    {
-        "name": "钱炜慷 Weikang Qian",
+        "name": "韩充 Chong Han",
         "title": "副教授 Associate Professor",
-        "office": "430",
-        "tel": "+86-21-34206765 Ext. 4301",
-        "email": "qianwk@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-03978-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/109"
-    },
-    {
-        "name": "乔恒 Heng Qiao",
-        "title": "助理教授 Assistant Professor",
-        "office": "438",
-        "tel": "+86-21-34206765 Ext. 4381",
-        "email": "heng.qiao@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02325-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/1400"
-    },
-    {
-        "name": "Pradeep Ray Pradeep Ray",
-        "title": "教授 Teaching Professor",
-        "office": "409B",
-        "tel": "+86-21-34206765 Ext. 4092",
-        "email": "pradeep.ray@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Pradeep-Ray1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/111"
-    },
-    {
-        "name": "Matthew Risling Matthew Risling",
-        "title": "助理教授 Assistant Teaching Professor",
-        "office": "407B",
-        "tel": "+86-21-34206765 Ext. 4072",
-        "email": "matthew.risling@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02276-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/113"
-    },
-    {
-        "name": "邵磊 Soong-Chul Ro",
-        "title": "助理教授 Associate Teaching Professor",
-        "office": "542",
-        "tel": "+86-21-34206765 Ext. 5421",
-        "email": "lei.shao@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Lei-Shao.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/116"
-    },
-    {
-        "name": "沈泳星 Lei Shao",
-        "title": "副教授 Assistant Professor",
-        "office": "504",
-        "tel": "+86-21-34206765 Ext. 5041",
-        "email": "yongxing.shen@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-03618-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/118"
-    },
-    {
-        "name": "申岩峰 Yongxing Shen",
-        "title": "副教授 Associate Professor",
-        "office": "502",
-        "tel": "+86-21-34206765 Ext. 5021",
-        "email": "yanfeng.shen@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Yangfeng-Shen.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/119"
-    },
-    {
-        "name": "孙婷 Yanfeng Shen",
-        "title": "副教授 Associate Professor",
-        "office": "439A",
-        "tel": "+86-21-34206765 ext. 4391",
-        "email": "ting.sun@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-04274-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/121"
-    },
-    {
-        "name": "唐爱民 Ting Sun",
-        "title": "助理研究员 Associate Teaching Professor",
-        "office": "227",
-        "tel": "+86-21-34206765 Ext. 2273",
-        "email": "tangaiming@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02999-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/122"
-    },
-    {
-        "name": "Ryan Mallory Thorpe Aimin Tang",
-        "title": "助理教授 Assistant Research Professor",
-        "office": "411C",
-        "tel": "+86-21-34206765 Ext. 4113",
-        "email": "ryan.thorpe@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02029-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/125"
-    },
-    {
-        "name": "Joelle Tybon Kwee-Yan Teh",
-        "title": "助理教授 Associate Teaching Professor",
-        "office": "405B",
-        "tel": "+86-21-34206765 Ext. 4052",
-        "email": "joelle.tybon@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02314-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/128"
-    },
-    {
-        "name": "万文杰 Ryan Mallory Thorpe",
-        "title": "副教授 Associate Teaching Professor",
-        "office": "426",
-        "tel": "+86-21-34206765 Ext. 4261",
-        "email": "wenjie.wan@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-04077-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/131"
-    },
-    {
-        "name": "王利坡 Chang-Ching Tu",
-        "title": "副教授 Assistant Professor",
-        "office": "524",
-        "tel": "+86-21-34206765 Ext. 5241",
-        "email": "lipo.wang@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Lipo-Wang-e1368430186561.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/133"
-    },
-    {
-        "name": "王旭东 Joelle Tybon",
-        "title": "教授 Assistant Professor",
-        "office": "416",
-        "tel": "+86-021-34206765 Ext. 4161",
-        "email": "wxudong@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Xudong-Wang-e1368500857952.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/136"
-    },
-    {
-        "name": "王衍明 Wenjie Wan",
-        "title": "助理教授 Associate Professor",
-        "office": "525",
-        "tel": "+86-21-34206765 Ext.5251",
-        "email": "yanming.wang@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/%E7%8E%8B%E8%A1%8D%E6%98%8E.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/3686"
-    },
-    {
-        "name": "王文冬 Lipo Wang",
-        "title": "副教授 Associate Professor",
-        "office": "527",
-        "tel": "+86-21-34206765 Ext. 5271",
-        "email": "wendong.wang@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Wendong-Wang.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/5279"
-    },
-    {
-        "name": "魏伊华 Xudong Wang",
-        "title": "助理教授 Professor",
-        "office": "435A",
-        "tel": "+86-21-34206765 Ext. 4351",
-        "email": "irene.wei@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02601-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/137"
-    },
-    {
-        "name": "Peter Weise Yanming Wang",
-        "title": "助理教授 Assistant Professor",
-        "office": "411A",
-        "tel": "+86-21-34206765 Ext. 4111",
-        "email": "peter.weise@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02489-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/130"
-    },
-    {
-        "name": "Paul Weng Wendong Wang",
-        "title": "助理教授 Associate Professor",
-        "office": "406",
-        "tel": "+86-21-34206765 Ext. 4061",
-        "email": "paul.weng@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02140-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/138"
-    },
-    {
-        "name": "吴继刚 Irene Wei",
-        "title": "副教授 Assistant Teaching Professor",
-        "office": "435C",
-        "tel": "+86-21-34206765 Ext. 4353",
-        "email": "jigang.wu@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-01961-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/139"
-    },
-    {
-        "name": "谢泉波 Peter Weise",
-        "title": "讲师 Assistant Teaching Professor",
-        "office": "409A",
-        "tel": "+86-21-34206765 Ext. 4091",
-        "email": "quanbo.xie@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-03779-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/141"
-    },
-    {
-        "name": "辛弘毅 Paul Weng",
-        "title": "助理教授 Assistant Professor",
-        "office": "436",
-        "tel": "+86-21-34206765 Ext.4361",
-        "email": "hongyi.xin@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/xinhongyi.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/2339"
-    },
-    {
-        "name": "徐彤 Jigang Wu",
-        "title": "副教授 Associate Professor",
-        "office": "405C",
-        "tel": "+86-21-34206765 Ext. 4053",
-        "email": "xutong2067@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Tong-Xu1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/142"
-    },
-    {
-        "name": "杨康裕 Quanbo Xie",
-        "title": "高级讲师 Lecturer",
-        "office": "407A",
-        "tel": "+86-21-34206765 Ext. 4071",
-        "email": "andrew.yang@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-03086-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/143"
-    },
-    {
-        "name": "杨明 Hongyi Xin",
-        "title": "副院长 & 教授 Assistant Professor",
-        "office": "400H",
-        "tel": "+86-21-34206765 Ext. 4008",
-        "email": "mingyang@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02694-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/145"
-    },
-    {
-        "name": "杨睿 Tong Xu",
-        "title": "助理教授 Associate Teaching Professor",
-        "office": "434",
-        "tel": "+86-21-34208540 Ext. 4341",
-        "email": "rui.yang@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02373-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/147"
-    },
-    {
-        "name": "赵栗在 Andrew Yang",
-        "title": "助理教授 Senior lecturer",
-        "office": "544",
-        "tel": "+86-21-34206765 Ext. 5441",
-        "email": "yuljae.cho@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02447-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/1405"
-    },
-    {
-        "name": "朱宰亨 Ming Yang",
-        "title": "副教授 Associate Dean / Professor",
-        "office": "500",
-        "tel": "+86-21-34206765 Ext. 5001",
-        "email": "jaehyung.ju@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-03375-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/96"
-    },
-    {
-        "name": "郑贵元 Rui Yang",
-        "title": "副教授 Assistant Professor",
-        "office": "437C",
-        "tel": "+86-21-34206765 Ext. 4373",
-        "email": "tehk@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-01996-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/124"
-    },
-    {
-        "name": "张峻 Jun Zhang",
-        "title": "副教授 Associate Professor",
-        "office": "418",
-        "tel": "+86-21-34206765 Ext. 4181",
-        "email": "zhangjun12@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02531-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/149"
-    },
-    {
-        "name": "张强 Qiang Zhang",
-        "title": "教授 Professor",
-        "office": "528",
-        "tel": "+86-21-34206765 Ext. 5281",
-        "email": "qzhang@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02058-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/152"
-    },
-    {
-        "name": "郑刚 Gang Zheng",
-        "title": "副院长 & 副教授 Asso. Dean / Associate Teaching Professor",
-        "office": "400E",
-        "tel": "+86-21-34206765 Ext. 4005",
-        "email": "gzheng@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02662-150x190-1.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/154"
+        "office": "408",
+        "tel": "+86-21-34206765 Ext. 4081",
+        "email": "chong.han@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Chong-Han-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/90"
     },
     {
         "name": "周德智 Dezhi Zhou",
@@ -594,6 +90,42 @@
         "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/25040"
     },
     {
+        "name": "孔令逊 David Hung",
+        "title": "副院长 & 教授 Associate Dean / Professor",
+        "office": "400D",
+        "tel": "+86-21-34206765 Ext. 4004",
+        "email": "dhung@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/David-Hung.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/93"
+    },
+    {
+        "name": "焦恩临 En-Ling Chiao",
+        "title": "助理教授 Assistant Teaching Professor",
+        "office": "405A",
+        "tel": "+86-21-34206765 Ext.4051",
+        "email": "enling.chiao@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/En-Ling-Chiao.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/3114"
+    },
+    {
+        "name": "郑刚 Gang Zheng",
+        "title": "副院长 & 副教授 Asso. Dean / Associate Teaching Professor",
+        "office": "400E",
+        "tel": "+86-21-34206765 Ext. 4005",
+        "email": "gzheng@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02662-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/154"
+    },
+    {
+        "name": "乔恒 Heng Qiao",
+        "title": "助理教授 Assistant Professor",
+        "office": "438",
+        "tel": "+86-21-34206765 Ext. 4381",
+        "email": "heng.qiao@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02325-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/1400"
+    },
+    {
         "name": "朱虹 Hong Zhu",
         "title": "副教授 Associate Professor",
         "office": "538",
@@ -601,6 +133,429 @@
         "email": "hong.zhu@sjtu.edu.cn",
         "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Hong-Zhu-1.jpg",
         "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/156"
+    },
+    {
+        "name": "辛弘毅 Hongyi Xin",
+        "title": "助理教授 Assistant Professor",
+        "office": "436",
+        "tel": "+86-21-34206765 Ext.4361",
+        "email": "hongyi.xin@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/xinhongyi.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/2339"
+    },
+    {
+        "name": "火色特 Horst Harold Hohberger",
+        "title": "副教授 Associate Teaching Professor",
+        "office": "441C",
+        "tel": "+86-21-34206765 Ext. 4413",
+        "email": "horst@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Horst-Hohberger-2.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/91"
+    },
+    {
+        "name": "鲍华 Hua Bao",
+        "title": "副教授 Associate Professor",
+        "office": "522",
+        "tel": "+86-21-34206765 Ext. 5221",
+        "email": "hua.bao@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-03275-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/23"
+    },
+    {
+        "name": "魏伊华 Irene Wei",
+        "title": "助理教授 Assistant Teaching Professor",
+        "office": "435A",
+        "tel": "+86-21-34206765 Ext. 4351",
+        "email": "irene.wei@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02601-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/137"
+    },
+    {
+        "name": "朱宰亨 Jaehyung “Joshua” Ju",
+        "title": "副教授 Associate Professor",
+        "office": "500",
+        "tel": "+86-21-34206765 Ext. 5001",
+        "email": "jaehyung.ju@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-03375-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/96"
+    },
+    {
+        "name": "李杰 Jie Li",
+        "title": "兼职教授 Adjunct professor",
+        "office": "404",
+        "tel": "+86-21-3420-6045 Ext.4041",
+        "email": "jieli@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/image02-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/3291"
+    },
+    {
+        "name": "吴继刚 Jigang Wu",
+        "title": "副教授 Associate Professor",
+        "office": "435C",
+        "tel": "+86-21-34206765 Ext. 4353",
+        "email": "jigang.wu@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-01961-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/139"
+    },
+    {
+        "name": "Joelle Tybon Joelle Tybon",
+        "title": "助理教授 Assistant Professor",
+        "office": "405B",
+        "tel": "+86-21-34206765 Ext. 4052",
+        "email": "joelle.tybon@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02314-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/128"
+    },
+    {
+        "name": "倪军 Jun Ni",
+        "title": "荣誉院长 & 教授 Honorary Dean / Professor",
+        "office": "571",
+        "tel": "+86-21-34206765 Ext. 5711",
+        "email": "junni@umich.edu",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/junni-150x190.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/107"
+    },
+    {
+        "name": "邵磊 Lei Shao",
+        "title": "助理教授 Assistant Professor",
+        "office": "542",
+        "tel": "+86-21-34206765 Ext. 5421",
+        "email": "lei.shao@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Lei-Shao.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/116"
+    },
+    {
+        "name": "金力 Li Jin",
+        "title": "助理教授 Assistant Professor",
+        "office": "424",
+        "tel": "+86-21-34206765 Ext. 4241",
+        "email": "li.jin@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02361-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/25039"
+    },
+    {
+        "name": "王利坡 Lipo Wang",
+        "title": "副教授 Associate Professor",
+        "office": "524",
+        "tel": "+86-21-34206765 Ext. 5241",
+        "email": "lipo.wang@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Lipo-Wang-e1368430186561.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/133"
+    },
+    {
+        "name": "马良 Mateusz Stanislaw Krzyzosiak",
+        "title": "副教授 Associate Teaching Professor",
+        "office": "439C",
+        "tel": "+86-21-34206765 Ext. 4393",
+        "email": "m.krzyzosiak@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Mateusz-Krzyzosiak-e1368430699736.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/97"
+    },
+    {
+        "name": "Matthew Risling Matthew Risling",
+        "title": "助理教授 Assistant Teaching Professor",
+        "office": "407B",
+        "tel": "+86-21-34206765 Ext. 4072",
+        "email": "matthew.risling@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02276-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/113"
+    },
+    {
+        "name": "Abdelmadjid Mesli Abdelmadjid Mesli",
+        "title": "兼职教授 Adjunct Professor",
+        "office": "",
+        "tel": "+86-21-34206765",
+        "email": "mesli@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Mesli-Abdelmadjid.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/75"
+    },
+    {
+        "name": "李冕 Mian Li",
+        "title": "副教授 Associate Professor",
+        "office": "520",
+        "tel": "+86-21-34206765 Ext. 5201",
+        "email": "mianli@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Mian-Li_PerfectlyClear.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/3292"
+    },
+    {
+        "name": "杨明 Ming Yang",
+        "title": "副院长 & 教授 Associate Dean / Professor",
+        "office": "400H",
+        "tel": "+86-21-34206765 Ext. 4008",
+        "email": "mingyang@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02694-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/145"
+    },
+    {
+        "name": "刘悦纳 Nana Liu",
+        "title": "副教授（双聘） Associate Professor (dual appointment)",
+        "office": "",
+        "tel": "+86-21-54740031",
+        "email": "nanaliu@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Nana-Liu.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/3755"
+    },
+    {
+        "name": "Nathaniel T. Murray Nathaniel T. Murray",
+        "title": "助理教授 Assistant Teaching Professor",
+        "office": "441A",
+        "tel": "+86-21-34206045 Ext. 4411",
+        "email": "nathaniel.murray@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02825-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/106"
+    },
+    {
+        "name": "Olga Danilkina Olga Danilkina",
+        "title": "副教授 Associate Teaching Professor",
+        "office": "437B",
+        "tel": "+86-21-34206765 Ext. 4372",
+        "email": "olga.danilkina@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Olga-Danilkina.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/85"
+    },
+    {
+        "name": "Paul Weng Paul Weng",
+        "title": "助理教授 Assistant Professor",
+        "office": "406",
+        "tel": "+86-21-34206765 Ext. 4061",
+        "email": "paul.weng@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02140-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/138"
+    },
+    {
+        "name": "黄佩森 Peisen Huang",
+        "title": "院长 & 教授 Dean / Professor",
+        "office": "400A",
+        "tel": "+86-21-34206765 Ext. 4001",
+        "email": "peisen.huang@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02732-150x190-2.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/92"
+    },
+    {
+        "name": "Peter Weise Peter Weise",
+        "title": "助理教授 Assistant Teaching Professor",
+        "office": "411A",
+        "tel": "+86-21-34206765 Ext. 4111",
+        "email": "peter.weise@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02489-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/130"
+    },
+    {
+        "name": "Pradeep Ray Pradeep Ray",
+        "title": "教授 Teaching Professor",
+        "office": "409B",
+        "tel": "+86-21-34206765 Ext. 4092",
+        "email": "pradeep.ray@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Pradeep-Ray1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/111"
+    },
+    {
+        "name": "陈倩栎 Qianli Chen",
+        "title": "助理教授 Assistant Professor",
+        "office": "540",
+        "tel": "+86-21-34206765 Ext. 5401",
+        "email": "qianli.chen@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02219-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/78"
+    },
+    {
+        "name": "钱炜慷 Weikang Qian",
+        "title": "副教授 Associate Professor",
+        "office": "430",
+        "tel": "+86-21-34206765 Ext. 4301",
+        "email": "qianwk@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-03978-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/109"
+    },
+    {
+        "name": "谢泉波 Quanbo Xie",
+        "title": "讲师 Lecturer",
+        "office": "409A",
+        "tel": "+86-21-34206765 Ext. 4091",
+        "email": "quanbo.xie@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-03779-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/141"
+    },
+    {
+        "name": "张强 Qiang Zhang",
+        "title": "教授 Professor",
+        "office": "528",
+        "tel": "+86-21-34206765 Ext. 5281",
+        "email": "qzhang@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02058-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/152"
+    },
+    {
+        "name": "Roberto Dugnani Roberto Dugnani",
+        "title": "副教授 Associate Professor",
+        "office": "518",
+        "tel": "+86-21-34206765 Ext. 5181",
+        "email": "roberto.dugnani@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Roberto-e1369881544293.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/87"
+    },
+    {
+        "name": "杨睿 Rui Yang",
+        "title": "助理教授 Assistant Professor",
+        "office": "434",
+        "tel": "+86-21-34208540 Ext. 4341",
+        "email": "rui.yang@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02373-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/147"
+    },
+    {
+        "name": "Ryan Mallory Thorpe Ryan Mallory Thorpe",
+        "title": "助理教授 Associate Teaching Professor",
+        "office": "411C",
+        "tel": "+86-21-34206765 Ext. 4113",
+        "email": "ryan.thorpe@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02029-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/125"
+    },
+    {
+        "name": "Shane Miguel Johnson Shane Miguel Johnson",
+        "title": "副教授 Associate Professor",
+        "office": "506",
+        "tel": "+86-21-34206765 Ext. 5061",
+        "email": "shane.johnson@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Shane-e1369883333885.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/95"
+    },
+    {
+        "name": "薄首行 Shouhang Bo",
+        "title": "副教授 Associate Professor",
+        "office": "534",
+        "tel": "+86-21-34206765 Ext. 5341",
+        "email": "shouhang.bo@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-01826-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/25"
+    },
+    {
+        "name": "卢承哲 Soong-Chul Ro",
+        "title": "副教授 Associate Teaching Professor",
+        "office": "409C",
+        "tel": "+86-21-34206765 Ext. 4093",
+        "email": "soong-chul.ro@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02298-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/115"
+    },
+    {
+        "name": "陈松良 Sung-Liang Chen",
+        "title": "助理教授 Associate Professor",
+        "office": "428",
+        "tel": "+86-21-34206765 Ext. 4281",
+        "email": "sungliang.chen@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-04130-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/83"
+    },
+    {
+        "name": "唐爱民 Aimin Tang",
+        "title": "助理研究员 Assistant Research Professor",
+        "office": "227",
+        "tel": "+86-21-34206765 Ext. 2273",
+        "email": "tangaiming@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02999-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/122"
+    },
+    {
+        "name": "郑贵元 Kwee-Yan Teh",
+        "title": "副教授 Associate Teaching Professor",
+        "office": "437C",
+        "tel": "+86-21-34206765 Ext. 4373",
+        "email": "tehk@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-01996-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/124"
+    },
+    {
+        "name": "孙婷 Ting Sun",
+        "title": "副教授 Associate Teaching Professor",
+        "office": "439A",
+        "tel": "+86-21-34206765 ext. 4391",
+        "email": "ting.sun@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-04274-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/121"
+    },
+    {
+        "name": "王文冬 Wendong Wang",
+        "title": "副教授 Associate Professor",
+        "office": "527",
+        "tel": "+86-21-34206765 Ext. 5271",
+        "email": "wendong.wang@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Wendong-Wang.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/5279"
+    },
+    {
+        "name": "万文杰 Wenjie Wan",
+        "title": "副教授 Associate Professor",
+        "office": "426",
+        "tel": "+86-21-34206765 Ext. 4261",
+        "email": "wenjie.wan@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-04077-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/131"
+    },
+    {
+        "name": "王旭东 Xudong Wang",
+        "title": "教授 Professor",
+        "office": "416",
+        "tel": "+86-021-34206765 Ext. 4161",
+        "email": "wxudong@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Xudong-Wang-e1368500857952.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/136"
+    },
+    {
+        "name": "郭鑫斐 Xinfei Guo",
+        "title": "助理教授 Assistant Professor",
+        "office": "419",
+        "tel": "+86-21-3420-6765 Ext. 4191",
+        "email": "xinfei.guo@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/202105171.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/28808"
+    },
+    {
+        "name": "徐彤 Tong Xu",
+        "title": "副教授 Associate Teaching Professor",
+        "office": "405C",
+        "tel": "+86-21-34206765 Ext. 4053",
+        "email": "xutong2067@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Tong-Xu1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/142"
+    },
+    {
+        "name": "卢旭阳 Xuyang Lu",
+        "title": "助理教授 Assistant Professor",
+        "office": "422",
+        "tel": "+86-21-34206765 Ext. 4221",
+        "email": "xuyang.lu@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-03046-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/18750"
+    },
+    {
+        "name": "申岩峰 Yanfeng Shen",
+        "title": "副教授 Associate Professor",
+        "office": "502",
+        "tel": "+86-21-34206765 Ext. 5021",
+        "email": "yanfeng.shen@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Yangfeng-Shen.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/119"
+    },
+    {
+        "name": "王衍明 Yanming Wang",
+        "title": "助理教授 Assistant Professor",
+        "office": "525",
+        "tel": "+86-21-34206765 Ext.5251",
+        "email": "yanming.wang@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/%E7%8E%8B%E8%A1%8D%E6%98%8E.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/3686"
+    },
+    {
+        "name": "但亚平 Yaping Dan",
+        "title": "副教授 Associate Professor",
+        "office": "516",
+        "tel": "+86-021-34206765 Ext. 5161",
+        "email": "yaping.dan@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-01947-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/86"
     },
     {
         "name": "朱怡飞 Yifei Zhu",
@@ -612,12 +567,57 @@
         "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/1402"
     },
     {
-        "name": "邹桉 An Zou",
+        "name": "龙泳 Yong Long",
         "title": "助理教授 Assistant Professor",
-        "office": "421",
-        "tel": "+86-21-34206765 Ext.4211",
-        "email": "an.zou@sjtu.edu.cn",
-        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Zou-An.jpg",
-        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/28819"
+        "office": "402",
+        "tel": "+86-21-34205661 Ext. 4021",
+        "email": "yong.long@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02674-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/102"
+    },
+    {
+        "name": "沈泳星 Yongxing Shen",
+        "title": "副教授 Associate Professor",
+        "office": "504",
+        "tel": "+86-21-34206765 Ext. 5041",
+        "email": "yongxing.shen@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-18-03618-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/118"
+    },
+    {
+        "name": "毕尤一 Youyi Bi",
+        "title": "助理教授 Assistant Professor",
+        "office": "530",
+        "tel": "+86-21-3420-6075 ext. 5301",
+        "email": "youyi.bi@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/Youyi-Bi1-1-118x150.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/24"
+    },
+    {
+        "name": "赵栗在 Yuljae Cho",
+        "title": "助理教授 Assistant Professor",
+        "office": "544",
+        "tel": "+86-21-34206765 Ext. 5441",
+        "email": "yuljae.cho@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02447-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/1405"
+    },
+    {
+        "name": "郭云龙 Yunlong Guo",
+        "title": "副教授 Associate Professor",
+        "office": "510",
+        "tel": "+86-21-34206765 Ext. 5101",
+        "email": "yunlong.guo@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02169-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/89"
+    },
+    {
+        "name": "张峻 Jun Zhang",
+        "title": "副教授 Associate Professor",
+        "office": "418",
+        "tel": "+86-21-34206765 Ext. 4181",
+        "email": "zhangjun12@sjtu.edu.cn",
+        "imageUrl": "https://www.ji.sjtu.edu.cn/wp-content/uploads/formidable/4/2021-03-17-02531-150x190-1.jpg",
+        "selfIntrUrl": "https://www.ji.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/149"
     }
 ]
