@@ -27,15 +27,15 @@ SETTINGS = load_json('settings.json')
 REPLY = load_json('data/reply.json')
 msgQueue = Queue()
 
-# app = bot.server_app
-# @app.route('/danmu/coolq')
-# async def danmu():
-#     if request.remote_addr and request.remote_addr != '127.0.0.1':
-#         return None
-#     re = []
-#     while not msgQueue.empty():
-#         re.append(msgQueue.get())
-#     return jsonify(re)
+#app = bot.server_app
+#@app.route('/danmu/coolq')
+#async def danmu():
+#    if request.remote_addr and request.remote_addr != '127.0.0.1':
+#        return None
+#    re = []
+#    while not msgQueue.empty():
+#        re.append(msgQueue.get())
+#    return jsonify(re)
 
 
 @bot.on_message('private')
