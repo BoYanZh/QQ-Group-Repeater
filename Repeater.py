@@ -149,7 +149,7 @@ def Repeater():
         keyword = keyword.lower()
         res = ""
         if (len(keyword) == 1 and ((re.search(r'[a-z]|[A-Z]', keyword)))):
-                res = "结果过多"
+            res = "结果过多"
         else:
         reDict = dict()
         for item in Bot.COURSES:
