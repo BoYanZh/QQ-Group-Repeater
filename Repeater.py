@@ -134,23 +134,23 @@ def Repeater():
             keyword = tmp_reg.group(2)
         keyword = keyword.lower().lstrip(' ')
         res = ""
-        print(keyword)
         if (len(keyword) == 1 and ((re.search(r'[a-z]|[A-Z]', keyword)))):
-            print("1")
             res = "结果过多"
         else: 
-            print("2")
             for item in Bot.CONTACTS:
                 if keyword in item['name'].lower() or keyword in ''.join([word[0] for word in item['name'].lower().split() if word]):
                     res += f"姓名：{item['name']}\n职称：{item['title']}\n办公室：{item['office']}\n电话：{item['tel']}\n邮箱：{item['email']}\n介绍:{item['selfIntrUrl']}\n照片：[CQ:image,file={item['imageUrl']}]\n\n"
         return res.strip() if res else self.getReply("contacts_failed")
 
-    @bot.onCommand(r'([\s\S]{2,})教什么')
+    @bot.onCommand(r'([\s\S]{1,})教什么')
     async def replyTeaching(self):
-        tmp_reg = re.search(r'([\s\S]{2,})教什么', self.msg.lstrip('#'))
+        tmp_reg = re.search(r'([\s\S]{1,})教什么', self.msg.lstrip('#'))
         keyword = tmp_reg.group(1)
         keyword = keyword.lower()
         res = ""
+        if (len(keyword) == 1 and ((re.search(r'[a-z]|[A-Z]', keyword)))):
+                res = "结果过多"
+        else:
         reDict = dict()
         for item in Bot.COURSES:
             if keyword in [name.lower() for name in item['teams']]:
