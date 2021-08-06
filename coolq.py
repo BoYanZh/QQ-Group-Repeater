@@ -6,11 +6,12 @@ import logging
 import asyncio
 import time
 from util import load_json, purgeMsg
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone,timedelta
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from queue import Queue
-
+# from pytz import timezone
+# used_timezone=timezone('Asia/Shanghai')
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
@@ -90,13 +91,13 @@ async def handle_group_request(context):
 
 
 async def send_early_msg():
-    await asyncio.sleep(int(random.random() * 60 * 60) + 900)
-    time_format = '%Y-%m-%d %H:%M:%S'
-    bj_offset = timezone(timedelta(hours=8))
-    bj_datetime = datetime.now(bj_offset)
+    await asyncio.sleep(int(random.random() * 0) + 5)
+    #time_format = '%Y-%m-%d %H:%M:%S'
+    #show_datetime = datetime.now(used_timezone)
+    #string_datetime = show_datetime.strftime(time_format)
     re = random.choice(REPLY['on_early'])
     for group_id in SETTINGS['MEMTION_GROUP']:
-        await bot.send({'group_id': group_id}, message=re)
+        await bot.send({'group_id': group_id}, message=(re))#+string_datetime))
 
 
 async def send_new_day_msg():
@@ -107,9 +108,9 @@ async def send_new_day_msg():
 
 def sche():
     scheduler = AsyncIOScheduler()
-    # TODO: fit for all environments with different timezone, this is for 0 timezone
-    scheduler.add_job(send_early_msg, 'cron', hour='3', minute='0')
-    scheduler.add_job(send_new_day_msg, 'cron', hour='0', minute='0')
+    # scheduler.add_job(send_early_msg, 'cron', hour='7', minute='50',timezone=used_timezone)
+    scheduler.add_job(send_new_day_msg, 'cron', hour='0', minute='0')#,timezone=used_timezone)
+    scheduler.add_job(send_early_msg, 'cron', hour='23', minute='55')
     scheduler.start()
 
 
