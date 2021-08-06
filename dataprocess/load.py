@@ -1,6 +1,9 @@
 import json
+
+
 def getemail(this):
     return this['email']
+
 
 with open("contactsCN.json", 'r') as load_cn:
     load_CN = json.load(load_cn)
@@ -16,10 +19,16 @@ while True:
     try:
         a = next(ita)
         b = next(itb)
-        if (a['email']==b['email']):
+        if ((a['email'] == b['email']) and (a['name'] != b['name'])):
             result.append({'name': a['name']+" "+b['name'], 'title': a['title']+" "+b['title'], 'office': a['office'],
-                      'tel': a['tel'], 'email': a['email'], 'imageUrl': a['imageUrl'], 'selfIntrUrl': a['selfIntrUrl']})
-        else : print("Wrong pair.")
+                           'tel': a['tel'], 'email': a['email'], 'imageUrl': a['imageUrl'], 'selfIntrUrl': a['selfIntrUrl']})
+        else:
+            if ((a['email'] == b['email'])):
+                result.append({'name': a['name'], 'title': a['title']+" "+b['title'], 'office': a['office'],
+                               'tel': a['tel'], 'email': a['email'], 'imageUrl': a['imageUrl'], 'selfIntrUrl': a['selfIntrUrl']})
+            else:
+                print("Wrong pair.")
+
     except StopIteration:
         break
 print(result)
