@@ -1,6 +1,6 @@
 Flask
 APScheduler
-aiocqhttp
+aiocqhttp==0.6.8
 requests
 jieba
 aiohttp
